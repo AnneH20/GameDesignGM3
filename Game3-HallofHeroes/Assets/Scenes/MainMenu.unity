@@ -556,7 +556,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1253295087}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: Fullscreen
         m_Mode: 0
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1253295087}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: Volume
         m_Mode: 0
@@ -1306,6 +1306,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &265477232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3947327191311795659, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_PrefabInstance: {fileID: 1575807863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &265477235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265477232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1caa11ca7bde4ec44b565464d4da8bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loaderCanvas: {fileID: 1083444337}
+  _progressBar: {fileID: 364708255}
+  _textProgress: {fileID: 1489147045}
+--- !u!114 &364708255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3947327191610291068, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_PrefabInstance: {fileID: 1575807863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &396614831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,16 +1549,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 11500000, guid: 1caa11ca7bde4ec44b565464d4da8bbd, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainScene
+          m_StringArgument: TutorialLevel
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &439962997
@@ -3110,6 +3141,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030038286}
   m_CullTransparentMesh: 1
+--- !u!1 &1083444337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3947327190822454911, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_PrefabInstance: {fileID: 1575807863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1093023361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,10 +3510,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253295082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83e64ad6b8e7b104a9da529599691d0c, type: 3}
+  m_Script: {fileID: 11500000, guid: e44951f093fbb6246b9362eb7c0f8548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 844f6c03d17870c41a97ae2836d28a62, type: 2}
+  audioMixer: {fileID: 24100000, guid: 57dc727364346b7449cae5c98148a35a, type: 2}
   slider: {fileID: 231929928}
 --- !u!1 &1261988499
 GameObject:
@@ -4013,6 +4049,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382197260}
   m_CullTransparentMesh: 1
+--- !u!114 &1489147045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3947327192233950124, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_PrefabInstance: {fileID: 1575807863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1575807863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4068,7 +4115,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Loader
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3947327191311795669, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
 --- !u!1 &1592889086
 GameObject:
