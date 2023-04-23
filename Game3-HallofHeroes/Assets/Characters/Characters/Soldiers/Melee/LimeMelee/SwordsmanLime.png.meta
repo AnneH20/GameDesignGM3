@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 6e1b7122a094f9e4ab692f20965b4d79
+=======
+guid: a6b3a06fc9ff146cd861cc42765d072d
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
 =======
 guid: a6b3a06fc9ff146cd861cc42765d072d
 >>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
@@ -106,7 +110,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -131,6 +138,9 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
+=======
 >>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
   spriteSheet:
     serializedVersion: 2
