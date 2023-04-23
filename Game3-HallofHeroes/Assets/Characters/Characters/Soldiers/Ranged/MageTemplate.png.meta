@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD
+guid: 9c21d97a9fdcb444e9dd0d1f2c042044
+=======
 guid: 0fef3066edd9741ddb7fd4eb8acbb6e4
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
+=======
+guid: 0fef3066edd9741ddb7fd4eb8acbb6e4
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,6 +109,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -125,6 +138,10 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
+=======
+>>>>>>> 2f64cb3a1ae6ab38fb55193f5f26d214421abd7c
   spriteSheet:
     serializedVersion: 2
     sprites: []
