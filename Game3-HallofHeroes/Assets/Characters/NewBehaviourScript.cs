@@ -9,6 +9,8 @@ public class NewBehaviourScript : MonoBehaviour
     public Rigidbody2D rb;
 
     private Vector2 moveDirection;
+
+    public Animator animator;
     
     // Update is called once per frame
     void Update()
