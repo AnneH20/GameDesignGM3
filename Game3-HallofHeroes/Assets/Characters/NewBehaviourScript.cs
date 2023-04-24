@@ -11,6 +11,11 @@ public class NewBehaviourScript : MonoBehaviour
     private Vector2 moveDirection;
 
     public Animator animator;
+
+    void Start()
+    {
+        rb.gravityScale = 0f;
+    }
     
     // Update is called once per frame
     void Update()
