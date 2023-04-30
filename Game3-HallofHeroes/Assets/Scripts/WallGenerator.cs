@@ -6,29 +6,42 @@ using static ProceduralGenerator;
 
 public static class WallGenerator
 {
-    public static void createWalls(HashSet<Vector2Int> floorpos, TilemapVisualizer tilemapVisualizer)
+    private static readonly List<Vector2Int> AllDirections = new List<Vector2Int>
     {
-        var basicWallPos = FindWallsDirection(floorpos, Direction2D.CardDirections);
-        foreach (var position in basicWallPos)
+        new Vector2Int(0, 1),
+        new Vector2Int(1, 0),
+        new Vector2Int(0, -1),
+        new Vector2Int(-1, 0),
+        new Vector2Int(1, 1),
+        new Vector2Int(-1, 1),
+        new Vector2Int(1, -1),
+        new Vector2Int(-1, -1)
+    };
+
+    public static void CreateWalls(HashSet<Vector2Int> floorPos, TilemapVisualizer tilemapVisualizer)
+    {
+        var wallPos = FindWallsDirection(floorPos, AllDirections);
+        foreach (var position in wallPos)
         {
             tilemapVisualizer.PaintSingleWall(position);
         }
     }
 
-    private static HashSet<Vector2Int> FindWallsDirection(HashSet<Vector2Int> floorpos, List<Vector2Int> directionsList)
+    private static HashSet<Vector2Int> FindWallsDirection(HashSet<Vector2Int> floorPos, List<Vector2Int> directionsList)
     {
-        HashSet<Vector2Int> wallpos = new HashSet<Vector2Int>();
-        foreach (var position in floorpos)
+        HashSet<Vector2Int> wallPos = new HashSet<Vector2Int>();
+        foreach (var position in floorPos)
         {
             foreach (var direction in directionsList)
             {
-                var neighborpos = position + direction;
-                if (!floorpos.Contains(neighborpos))
+                var neighborPos = position + direction;
+                if (!floorPos.Contains(neighborPos))
                 {
-                    wallpos.Add(neighborpos);
+                    wallPos.Add(neighborPos);
                 }
             }
         }
-        return wallpos;
+        return wallPos;
     }
 }
+

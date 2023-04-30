@@ -25,7 +25,7 @@ public static class ProceduralGenerator
             new Vector2Int(0, 1), // up
             new Vector2Int(1, 0), // right
             new Vector2Int(0, -1), // down
-            new Vector2Int(-1, 0) // left
+            new Vector2Int(-1, 0), // left
         };
 
         public static Vector2Int RandomDirection()

@@ -32,7 +32,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             floorpos.UnionWith(corridor);
         }
         tilemapVisualizer.PaintFloorTiles(floorpos);
-        WallGenerator.createWalls(floorpos, tilemapVisualizer);  
+        WallGenerator.CreateWalls(floorpos, tilemapVisualizer);  
     }
 
     // Create rooms at the end of dead ends
