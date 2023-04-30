@@ -33,4 +33,18 @@ public static class ProceduralGenerator
             return CardDirections[Random.Range(0, CardDirections.Count)];
         }
     }
+
+    public static List<Vector2Int> RandomWalkCorridor (Vector2Int startpos, int corridorlen)
+    {
+        List<Vector2Int> path = new List<Vector2Int>();
+        var direction = Direction2D.RandomDirection();
+        var currentpos = startpos;
+        path.Add(currentpos);
+        for (int i = 0; i < corridorlen; i++)
+        {
+            currentpos += direction;
+            path.Add(currentpos);
+        }
+        return path;
+    }
 }

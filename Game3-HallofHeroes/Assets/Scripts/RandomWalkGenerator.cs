@@ -6,24 +6,24 @@ using UnityEngine;
 
 public class RandomWalkGenerator : AbstractGenerator
 {
-    [SerializeField] private RandomWalkData randomWalkData = null;
+    [SerializeField] protected RandomWalkData randomWalkData = null;
     protected override void RunProceduralGenInternal()
     {
-        HashSet<Vector2Int> floorpos = RunRandomWalker();
+        HashSet<Vector2Int> floorpos = RunRandomWalker(randomWalkData, startpos);
         tilemapVisualizer.ClearFloorTiles();
         tilemapVisualizer.PaintFloorTiles(floorpos);
         tilemapVisualizer.ClearWallTiles();
         WallGenerator.createWalls(floorpos, tilemapVisualizer);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalker()
+    protected HashSet<Vector2Int> RunRandomWalker(RandomWalkData randomWalkData, Vector2Int pos)
     {
-        var currentpos = startpos;
+        var currentpos = pos;
         HashSet<Vector2Int> floorpos = new HashSet<Vector2Int>();
         for (int i = 0; i < randomWalkData.iterations; i++)
         {
-            var path = ProceduralGenerator.RandomWalker(currentpos, randomWalkData.walklen);
-            floorpos.UnionWith(path);
+            var floors = ProceduralGenerator.RandomWalker(currentpos, randomWalkData.walklen);
+            floorpos.UnionWith(floors);
             if (randomWalkData.useRandomSeed)
             {   
                currentpos = floorpos.ElementAt(UnityEngine.Random.Range(0, floorpos.Count));
