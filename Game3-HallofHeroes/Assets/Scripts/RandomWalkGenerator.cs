@@ -7,6 +7,11 @@ using UnityEngine;
 public class RandomWalkGenerator : AbstractGenerator
 {
     [SerializeField] protected RandomWalkData randomWalkData = null;
+
+    private void Start()
+    {
+        RunProceduralGen();
+    }
     protected override void RunProceduralGenInternal()
     {
         HashSet<Vector2Int> floorpos = RunRandomWalker(randomWalkData, startpos);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e91290d55c9e95468d410189d8a64e2, type: 3}
   m_Name: RandomWalkData_island
   m_EditorClassIdentifier: 
-  walklen: 20
+  walklen: 50
   iterations: 10
   useRandomSeed: 0
