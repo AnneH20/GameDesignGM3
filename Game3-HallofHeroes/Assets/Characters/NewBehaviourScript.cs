@@ -14,6 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Start()
     {
+        rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
     }
     

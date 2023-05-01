@@ -11,6 +11,7 @@ public abstract class AbstractGenerator : MonoBehaviour
     {
         tilemapVisualizer.ClearFloorTiles();
         tilemapVisualizer.ClearWallTiles();
+        tilemapVisualizer.ClearNextLevelTiles();
         RunProceduralGenInternal();
     }
 
@@ -18,6 +19,7 @@ public abstract class AbstractGenerator : MonoBehaviour
     {
         tilemapVisualizer.ClearFloorTiles();
         tilemapVisualizer.ClearWallTiles();
+        tilemapVisualizer.ClearNextLevelTiles();
     }
 
     protected abstract void RunProceduralGenInternal();
