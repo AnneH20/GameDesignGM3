@@ -10,7 +10,10 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private int corridorLength = 10;
     [SerializeField] private int corridorCount = 10;
     [SerializeField] private int corridorWidth = 2;
-    [SerializeField] [Range(0.1f, 1f)] private float roomChance = 0.7f;
+    [SerializeField] [Range(0.1f, 1f)] private float roomChance = 0.8f;
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+    private HashSet<Vector2Int> floorpos, corridorpos;
+
     protected override void RunProceduralGenInternal()
     {
         CorridorFirstGeneration();
@@ -32,7 +35,8 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             floorpos.UnionWith(corridor);
         }
         tilemapVisualizer.PaintFloorTiles(floorpos);
-        WallGenerator.CreateWalls(floorpos, tilemapVisualizer);  
+        WallGenerator.CreateWalls(floorpos, tilemapVisualizer);
+
     }
 
     // Create rooms at the end of dead ends
@@ -72,14 +76,41 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         HashSet<Vector2Int> roompos = new HashSet<Vector2Int>();
         int roomCount = Mathf.RoundToInt(roomposPotential.Count * roomChance);
         List<Vector2Int> roomposList = roomposPotential.OrderBy(x => Guid.NewGuid()).Take(roomCount).ToList();
-        roomposList.Add(startpos); // Add a room at the start position
+        ClearRoomData();
+        // Find the room furthest from the start position
+        Vector2Int furthestRoom = roomposList[0];
+        float maxDistance = 0f;
         foreach (var pos in roomposList)
         {
-            var room = RunRandomWalker(randomWalkData, pos);
-            roompos.UnionWith(room);
+            float distance = Vector2Int.Distance(pos, startpos);
+            if (distance > maxDistance)
+            {
+                maxDistance = distance;
+                furthestRoom = pos;
+            }
+        }
+        foreach (var pos in roomposList)
+        {
+            // Create a special tile in the furthest room that loads the next level
+            if (pos == furthestRoom)
+            {
+                // Add the position of the special tile to the room position set
+                roompos.Add(pos);
+                // Spawn the special tile
+                SpawnNextLevelTile(pos);
+                
+            }
+            // Otherwise, create a regular room
+            else
+            {
+                var room = RunRandomWalker(randomWalkData, pos);
+                SaveRoomData(pos, room);
+                roompos.UnionWith(room);
+            }
         }
         return roompos;
     }
+
     // Create corridors first, then create rooms at the end of corridors
     private List<List<Vector2Int>> CreateCorridors(HashSet<Vector2Int> floorpos, HashSet<Vector2Int> roomposPotential)
     {
@@ -94,6 +125,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             roomposPotential.Add(currentpos);
             floorpos.UnionWith(path);
         }
+        corridorpos = new HashSet<Vector2Int>(floorpos);
         return corridors;
     }
     // Increase the width of the corridor by adding neighbors to each position in the corridor
@@ -113,4 +145,25 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         }
         return newCorridor;
     }
+
+    private void SaveRoomData(Vector2Int position, HashSet<Vector2Int> room)
+    {
+        roomDict[position] = room;
+    }
+    private void ClearRoomData()
+    {
+        roomDict.Clear();
+    }
+
+    private void SpawnNextLevelTile(Vector2Int pos)
+    {
+        tilemapVisualizer.PaintNextLevelTile(pos);
+    }
+
+    private bool IsCorridor(Vector2Int pos)
+    {
+        return corridorpos.Contains(pos);
+    }
+
+
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(AbstractGenerator), true)]
 
 public class EditorScript : Editor
@@ -22,3 +23,4 @@ public class EditorScript : Editor
         }
     }
 }
+#endif
