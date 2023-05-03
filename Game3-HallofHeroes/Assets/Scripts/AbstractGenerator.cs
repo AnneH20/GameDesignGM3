@@ -12,6 +12,7 @@ public abstract class AbstractGenerator : MonoBehaviour
         tilemapVisualizer.ClearFloorTiles();
         tilemapVisualizer.ClearWallTiles();
         tilemapVisualizer.ClearNextLevelTiles();
+        CorridorFirstGenerator.DestroyEnemy();
         RunProceduralGenInternal();
     }
 
@@ -20,6 +21,7 @@ public abstract class AbstractGenerator : MonoBehaviour
         tilemapVisualizer.ClearFloorTiles();
         tilemapVisualizer.ClearWallTiles();
         tilemapVisualizer.ClearNextLevelTiles();
+        CorridorFirstGenerator.DestroyEnemy();
     }
 
     protected abstract void RunProceduralGenInternal();

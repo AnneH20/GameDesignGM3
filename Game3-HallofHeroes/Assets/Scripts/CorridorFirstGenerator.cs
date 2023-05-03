@@ -5,15 +5,23 @@ using UnityEngine;
 using System.Linq;
 using static ProceduralGenerator;
 
+
 public class CorridorFirstGenerator : RandomWalkGenerator
 {
     [SerializeField] private int corridorLength = 10;
     [SerializeField] private int corridorCount = 10;
     [SerializeField] private int corridorWidth = 2;
     [SerializeField] [Range(0.1f, 1f)] private float roomChance = 0.8f;
+    [SerializeField] private GameObject enemyPrefab = null;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private float spawnRadius = 1.0f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
     private HashSet<Vector2Int> floorpos, corridorpos;
 
+    private void Start()
+    {
+        RunProceduralGen();
+    }
     protected override void RunProceduralGenInternal()
     {
         CorridorFirstGeneration();
@@ -76,7 +84,10 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         HashSet<Vector2Int> roompos = new HashSet<Vector2Int>();
         int roomCount = Mathf.RoundToInt(roomposPotential.Count * roomChance);
         List<Vector2Int> roomposList = roomposPotential.OrderBy(x => Guid.NewGuid()).Take(roomCount).ToList();
-        ClearRoomData();
+        // Create a room at the starting position
+        roompos.Add(startpos);
+        var startRoom = RunRandomWalker(randomWalkData, startpos);
+        roompos.UnionWith(startRoom);
         // Find the room furthest from the start position
         Vector2Int furthestRoom = roomposList[0];
         float maxDistance = 0f;
@@ -96,6 +107,8 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             {
                 // Add the position of the special tile to the room position set
                 roompos.Add(pos);
+                var farRoom = RunRandomWalker(randomWalkData, pos);
+                roompos.UnionWith(farRoom);
                 // Spawn the special tile
                 SpawnNextLevelTile(pos);
                 
@@ -104,8 +117,30 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             else
             {
                 var room = RunRandomWalker(randomWalkData, pos);
-                SaveRoomData(pos, room);
                 roompos.UnionWith(room);
+                // Spawn enemies in this room
+                if (pos != startpos)
+                {
+                    foreach (var roomPos in room)
+                    {
+                        Collider2D wallCollider = Physics2D.OverlapCircle(roomPos, spawnRadius, wallLayer);
+                        if (wallCollider != null)
+                        {
+                            Debug.Log("Cannot spawn enemy - wall detected.");
+                        }
+                        // Check if the position is not a wall
+                        // Check if the position is not the starting position
+                        if (roomPos != furthestRoom && wallCollider == null)
+                        {
+                            if (UnityEngine.Random.value < 0.3f)
+                            {
+                                Instantiate(enemyPrefab, (Vector3Int)roomPos, Quaternion.identity);
+                            }    
+                        }
+                        
+                    }
+                }
+                
             }
         }
         return roompos;
@@ -159,11 +194,12 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     {
         tilemapVisualizer.PaintNextLevelTile(pos);
     }
-
-    private bool IsCorridor(Vector2Int pos)
+    public static void DestroyEnemy()
     {
-        return corridorpos.Contains(pos);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Boss");
+        foreach (GameObject enemy in enemies)
+        {
+            DestroyImmediate(enemy);
+        }
     }
-
-
 }

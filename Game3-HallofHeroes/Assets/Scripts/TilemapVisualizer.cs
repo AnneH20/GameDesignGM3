@@ -50,4 +50,9 @@ public class TilemapVisualizer : MonoBehaviour
     {
         PaintSingleTile(position, nextLevelTilemap, nextLevelTile);
     }
+
+    public bool IsWall(Vector2Int position)
+    {
+        return wallTilemap.HasTile((Vector3Int)position);
+    }
 }
