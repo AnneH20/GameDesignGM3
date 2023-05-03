@@ -201,7 +201,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     public static void DestroyEnemy()
     {
         List<GameObject> enemies = new List<GameObject>();
-        enemies.Add(GameObject.FindGameObjectWithTag("Enemy"));
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         enemies.Add(GameObject.FindGameObjectWithTag("Boss"));
         foreach (GameObject enemy in enemies)
         {
