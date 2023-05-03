@@ -13,6 +13,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private int corridorWidth = 2;
     [SerializeField] [Range(0.1f, 1f)] private float roomChance = 0.8f;
     [SerializeField] private GameObject enemyPrefab = null;
+    [SerializeField] private GameObject bossPrefab = null;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float spawnRadius = 1.0f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
@@ -109,6 +110,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
                 roompos.Add(pos);
                 var farRoom = RunRandomWalker(randomWalkData, pos);
                 roompos.UnionWith(farRoom);
+                Instantiate(bossPrefab, (Vector3Int)pos, Quaternion.identity);
                 // Spawn the special tile
                 SpawnNextLevelTile(pos);
                 
@@ -119,18 +121,20 @@ public class CorridorFirstGenerator : RandomWalkGenerator
                 var room = RunRandomWalker(randomWalkData, pos);
                 roompos.UnionWith(room);
                 // Spawn enemies in this room
-                if (pos != startpos)
+                if (pos != startpos && pos != furthestRoom)
                 {
+                    //TilemapCollider2D tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
+                    
                     foreach (var roomPos in room)
                     {
-                        Collider2D wallCollider = Physics2D.OverlapCircle(roomPos, spawnRadius, wallLayer);
+                        Collider2D wallCollider = Physics2D.OverlapCircle(pos, spawnRadius, wallLayer);
                         if (wallCollider != null)
                         {
                             Debug.Log("Cannot spawn enemy - wall detected.");
                         }
                         // Check if the position is not a wall
                         // Check if the position is not the starting position
-                        if (roomPos != furthestRoom && wallCollider == null)
+                        if (wallCollider == null)
                         {
                             if (UnityEngine.Random.value < 0.3f)
                             {
@@ -196,7 +200,9 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     }
     public static void DestroyEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Boss");
+        List<GameObject> enemies = new List<GameObject>();
+        enemies.Add(GameObject.FindGameObjectWithTag("Enemy"));
+        enemies.Add(GameObject.FindGameObjectWithTag("Boss"));
         foreach (GameObject enemy in enemies)
         {
             DestroyImmediate(enemy);
