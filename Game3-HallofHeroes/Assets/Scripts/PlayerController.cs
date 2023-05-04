@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public static int health = 100;
     public Rigidbody2D rb;
-
     public SceneState previousSceneState;
     private Vector2 moveDirection;
 
