@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static ProceduralGenerator;
+using UnityEngine.Tilemaps;
 
 public class CorridorFirstGenerator : RandomWalkGenerator
 {
@@ -11,9 +12,18 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private int corridorCount = 10;
     [SerializeField] private int corridorWidth = 2;
     [SerializeField] [Range(0.1f, 1f)] private float roomChance = 0.8f;
+    [SerializeField] private GameObject enemyPrefab = null;
+    [SerializeField] private GameObject bossPrefab = null;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Tilemap tilemap = null;
+    [SerializeField] private float spawnRadius = 1.0f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
     private HashSet<Vector2Int> floorpos, corridorpos;
 
+    private void Start()
+    {
+        RunProceduralGen();
+    }
     protected override void RunProceduralGenInternal()
     {
         CorridorFirstGeneration();
@@ -76,7 +86,10 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         HashSet<Vector2Int> roompos = new HashSet<Vector2Int>();
         int roomCount = Mathf.RoundToInt(roomposPotential.Count * roomChance);
         List<Vector2Int> roomposList = roomposPotential.OrderBy(x => Guid.NewGuid()).Take(roomCount).ToList();
-        ClearRoomData();
+        // Create a room at the starting position
+        roompos.Add(startpos);
+        var startRoom = RunRandomWalker(randomWalkData, startpos);
+        roompos.UnionWith(startRoom);
         // Find the room furthest from the start position
         Vector2Int furthestRoom = roomposList[0];
         float maxDistance = 0f;
@@ -96,6 +109,9 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             {
                 // Add the position of the special tile to the room position set
                 roompos.Add(pos);
+                var farRoom = RunRandomWalker(randomWalkData, pos);
+                roompos.UnionWith(farRoom);
+                Instantiate(bossPrefab, (Vector3Int)pos, Quaternion.identity);
                 // Spawn the special tile
                 SpawnNextLevelTile(pos);
                 
@@ -104,8 +120,31 @@ public class CorridorFirstGenerator : RandomWalkGenerator
             else
             {
                 var room = RunRandomWalker(randomWalkData, pos);
-                SaveRoomData(pos, room);
                 roompos.UnionWith(room);
+                // Spawn enemies in this room
+                if (pos != startpos && pos != furthestRoom)
+                {
+                    foreach (var roomPos in room)
+                    {
+                        TilemapCollider2D tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
+                        Tilemap tiles = tilemapCollider.GetComponent<Tilemap>();
+                        Vector3Int tilePosition = tiles.WorldToCell((Vector3Int)roomPos);
+                        TileBase tile = tiles.GetTile(tilePosition);
+                        if (tile == null)
+                        {
+                            if (UnityEngine.Random.value < 0.1f)
+                            {
+                                Vector3 spawnPos = (Vector3Int)roomPos + new Vector3(0.5f, 0.5f, 0f);
+                                Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+                            }   
+                        }
+                        else
+                        {
+                            Debug.Log("Cannot spawn enemy - wall detected.");
+                        }  
+                    }
+                }
+                
             }
         }
         return roompos;
@@ -159,11 +198,14 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     {
         tilemapVisualizer.PaintNextLevelTile(pos);
     }
-
-    private bool IsCorridor(Vector2Int pos)
+    public static void DestroyEnemy()
     {
-        return corridorpos.Contains(pos);
+        List<GameObject> enemies = new List<GameObject>();
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        enemies.Add(GameObject.FindGameObjectWithTag("Boss"));
+        foreach (GameObject enemy in enemies)
+        {
+            DestroyImmediate(enemy);
+        }
     }
-
-
 }
