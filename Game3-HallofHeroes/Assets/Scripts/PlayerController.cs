@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-
+    public static int health = 100;
     public Rigidbody2D rb;
 
+    public SceneState previousSceneState;
     private Vector2 moveDirection;
 
     public Animator animator;
@@ -43,6 +44,18 @@ public class NewBehaviourScript : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            BattleSceneTransition battleSceneTransition = FindObjectOfType<BattleSceneTransition>();
+            if (battleSceneTransition != null)
+            {
+                battleSceneTransition.TransitionToBattleScene();
+            }
+        }
+    }
+
     
 }
-
