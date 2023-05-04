@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static ProceduralGenerator;
-
+using UnityEngine.Tilemaps;
 
 public class CorridorFirstGenerator : RandomWalkGenerator
 {
@@ -15,6 +15,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private GameObject enemyPrefab = null;
     [SerializeField] private GameObject bossPrefab = null;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Tilemap tilemap = null;
     [SerializeField] private float spawnRadius = 1.0f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
     private HashSet<Vector2Int> floorpos, corridorpos;
@@ -123,25 +124,24 @@ public class CorridorFirstGenerator : RandomWalkGenerator
                 // Spawn enemies in this room
                 if (pos != startpos && pos != furthestRoom)
                 {
-                    //TilemapCollider2D tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
-                    
                     foreach (var roomPos in room)
                     {
-                        Collider2D wallCollider = Physics2D.OverlapCircle(pos, spawnRadius, wallLayer);
-                        if (wallCollider != null)
-                        {
-                            Debug.Log("Cannot spawn enemy - wall detected.");
-                        }
-                        // Check if the position is not a wall
-                        // Check if the position is not the starting position
-                        if (wallCollider == null)
+                        TilemapCollider2D tilemapCollider = tilemap.GetComponent<TilemapCollider2D>();
+                        Tilemap tiles = tilemapCollider.GetComponent<Tilemap>();
+                        Vector3Int tilePosition = tiles.WorldToCell((Vector3Int)roomPos);
+                        TileBase tile = tiles.GetTile(tilePosition);
+                        if (tile == null)
                         {
                             if (UnityEngine.Random.value < 0.3f)
                             {
-                                Instantiate(enemyPrefab, (Vector3Int)roomPos, Quaternion.identity);
-                            }    
+                                Vector3 spawnPos = (Vector3Int)roomPos + new Vector3(0.5f, 0.5f, 0f);
+                                Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+                            }   
                         }
-                        
+                        else
+                        {
+                            Debug.Log("Cannot spawn enemy - wall detected.");
+                        }  
                     }
                 }
                 
