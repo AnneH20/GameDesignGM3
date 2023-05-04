@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Slider _progressBar;
     [SerializeField] private TMP_Text _textProgress;
     private float _target;
-
    
     void Awake()
     {

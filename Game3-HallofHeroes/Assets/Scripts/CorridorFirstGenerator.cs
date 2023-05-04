@@ -16,7 +16,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private GameObject bossPrefab = null;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Tilemap tilemap = null;
-    [SerializeField] private float spawnRadius = 1.0f;
+    [SerializeField] private float enemySpawnChance = 0.1f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
     private HashSet<Vector2Int> floorpos, corridorpos;
 
@@ -132,7 +132,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
                         TileBase tile = tiles.GetTile(tilePosition);
                         if (tile == null)
                         {
-                            if (UnityEngine.Random.value < 0.1f)
+                            if (UnityEngine.Random.value < enemySpawnChance)
                             {
                                 Vector3 spawnPos = (Vector3Int)roomPos + new Vector3(0.5f, 0.5f, 0f);
                                 Instantiate(enemyPrefab, spawnPos, Quaternion.identity);

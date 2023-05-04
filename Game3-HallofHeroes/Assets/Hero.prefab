@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2287944175987903967}
   - component: {fileID: 2287944175987903964}
+  - component: {fileID: 4476313472866537690}
+  - component: {fileID: 3275698441538665030}
   - component: {fileID: 2287944175987903965}
-  - component: {fileID: 2287944175987903938}
   - component: {fileID: 2287944175987903939}
   - component: {fileID: 2287944175987903936}
   m_Layer: 0
@@ -88,6 +89,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4476313472866537690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287944175987903937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236019fcb5b92489e90984e4847011b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  rb: {fileID: 2287944175987903939}
+  previousSceneState:
+    playerHealth: 0
+  animator: {fileID: 2287944175987903965}
+--- !u!114 &3275698441538665030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2287944175987903937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1526ce44c6de5a4093c13290d230abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSceneState:
+    playerHealth: 100
 --- !u!95 &2287944175987903965
 Animator:
   serializedVersion: 5
@@ -108,21 +140,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &2287944175987903938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2287944175987903937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236019fcb5b92489e90984e4847011b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 4
-  rb: {fileID: 2287944175987903939}
-  animator: {fileID: 2287944175987903965}
 --- !u!50 &2287944175987903939
 Rigidbody2D:
   serializedVersion: 4
