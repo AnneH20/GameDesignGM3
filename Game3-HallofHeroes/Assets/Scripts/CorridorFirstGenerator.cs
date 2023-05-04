@@ -132,7 +132,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
                         TileBase tile = tiles.GetTile(tilePosition);
                         if (tile == null)
                         {
-                            if (UnityEngine.Random.value < 0.3f)
+                            if (UnityEngine.Random.value < 0.1f)
                             {
                                 Vector3 spawnPos = (Vector3Int)roomPos + new Vector3(0.5f, 0.5f, 0f);
                                 Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
