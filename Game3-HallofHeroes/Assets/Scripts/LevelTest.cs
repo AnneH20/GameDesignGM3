@@ -57,14 +57,4 @@ public class LevelTest : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("BattleScene"));
 
     }
-    /*private void LateUpdate() {
-        if (SceneManager.GetActiveScene().name == "BattleScene")
-        {
-            PlayerController.Instance.gameObject.SetActive(true);
-        }
-        else
-        {
-            PlayerController.Instance.gameObject.SetActive(false);
-        }
-    }*/
 }
