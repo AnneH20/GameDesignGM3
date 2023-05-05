@@ -13,6 +13,7 @@ public class SceneState
     public int playerMaxHealth;
     public List<Tilemap> tilemaps;
     public List<TileData> tileDataList;
+    public List<EnemyData> enemyDataList;
 }
 [System.Serializable]
 public class TileData
@@ -20,6 +21,13 @@ public class TileData
     public string tilemapName;
     public Vector3Int position;
     public Sprite sprite;
+}
+
+[System.Serializable]
+public class EnemyData
+{
+    public string enemyName;
+    public Vector3 position;
 }
 
 public class BattleSceneTransition : MonoBehaviour
@@ -55,6 +63,19 @@ public class BattleSceneTransition : MonoBehaviour
                 }
             }
         }
+        previousSceneState.enemyDataList = new List<EnemyData>();
+
+        // Get all the enemies in the scene
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // Save the position of each enemy
+        foreach (GameObject enemy in enemies)
+        {
+            EnemyData enemyData = new EnemyData();
+            enemyData.enemyName = enemy.name;
+            enemyData.position = enemy.transform.position;
+            previousSceneState.enemyDataList.Add(enemyData);
+        }
         
         string json = JsonUtility.ToJson(previousSceneState);
         File.WriteAllText(Application.persistentDataPath + "/previousSceneState.json", json);
@@ -84,6 +105,15 @@ public class BattleSceneTransition : MonoBehaviour
                     tilemap.SetTile(tileData.position, tile);
                 }
             }
+        }
+        // Get the enemy positions from the saved state
+        foreach (EnemyData enemyData in previousSceneState.enemyDataList)
+        {
+            // Find the enemy with the same name
+            GameObject enemy = GameObject.Find(enemyData.enemyName);
+
+            // Set the enemy's position
+            enemy.transform.position = enemyData.position;
         }
         Resources.FindObjectsOfTypeAll<PlayerController>()[0].grid.SetActive(true);
         string previousSceneName = PlayerPrefs.GetString("PreviousSceneName");
