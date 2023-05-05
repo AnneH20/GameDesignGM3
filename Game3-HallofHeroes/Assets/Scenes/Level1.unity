@@ -668,13 +668,26 @@ PrefabInstance:
       propertyPath: currentSceneState.tilemapStates.Array.data[0].tiles.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3275698441538665030, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
 --- !u!4 &1700837828 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2287944175987903967, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
   m_PrefabInstance: {fileID: 1700837827}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700837834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507793451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af0b709384089d489d967630d011e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778644488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2972643576215008604, guid: ab83730874456834598b138673ac0943, type: 3}

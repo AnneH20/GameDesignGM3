@@ -1,24 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
-public class BattleSceneTransition : MonoBehaviour
+public class LevelTest : MonoBehaviour
 {
-    public static BattleSceneTransition instance;
-    // Save the current scene state when transitioning to a battle scene
-    public void TransitionToBattleScene()
+    private void Update()
     {
-       StartCoroutine(LoadBattleScene());
-    }
-
-    // Return to the previous scene when the battle is over
-    public void ReturnToPreviousScene()
-    {
-        if (SceneManager.GetActiveScene().name == "BattleScene")
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (SceneManager.GetActiveScene().name == "BattleScene")
             {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 SceneManager.UnloadSceneAsync("BattleScene");
@@ -34,9 +25,12 @@ public class BattleSceneTransition : MonoBehaviour
                 PlayerController.Instance.grid.SetActive(true);
                 
             }
+            else
+            {
+                StartCoroutine(LoadBattleScene());
+            }
+        }
     }
-    
-
     IEnumerator LoadBattleScene()
     {
         // Load the scene asynchronously
