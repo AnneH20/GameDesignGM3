@@ -105,6 +105,7 @@ MonoBehaviour:
   rb: {fileID: 2287944175987903939}
   previousSceneState:
     playerHealth: 0
+    playerMaxHealth: 0
   animator: {fileID: 2287944175987903965}
 --- !u!114 &3275698441538665030
 MonoBehaviour:
@@ -119,7 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSceneState:
-    playerHealth: 100
+    playerHealth: 50
+    playerMaxHealth: 100
 --- !u!95 &2287944175987903965
 Animator:
   serializedVersion: 5

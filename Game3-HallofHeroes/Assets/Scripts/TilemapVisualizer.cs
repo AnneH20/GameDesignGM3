@@ -7,7 +7,6 @@ public class TilemapVisualizer : MonoBehaviour
 {
     [SerializeField] private Tilemap floorTilemap, wallTilemap, nextLevelTilemap;
     [SerializeField] private TileBase floorTile, wallTile, nextLevelTile;
-
     public void PaintFloorTiles (IEnumerable<Vector2Int> floorPositions)
     {
         PaintTiles(floorPositions, floorTilemap, floorTile);
@@ -55,4 +54,5 @@ public class TilemapVisualizer : MonoBehaviour
     {
         return wallTilemap.HasTile((Vector3Int)position);
     }
+
 }
