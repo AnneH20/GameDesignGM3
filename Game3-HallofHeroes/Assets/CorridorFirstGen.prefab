@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4789408109010889272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4789408109010889222}
+  - component: {fileID: 4789408109010889273}
+  m_Layer: 0
+  m_Name: CorridorFirstGen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4789408109010889222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4789408109010889272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4789408109010889273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4789408109010889272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf41f0dde6f184a49a5897a3ab01c87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startpos: {x: 0, y: 0}
+  tilemapVisualizer: {fileID: 3173481954035893395, guid: 091a579c5df5904418de2d8b5edc9ef6, type: 3}
+  randomWalkData: {fileID: 11400000, guid: 805f1d842cdc64a4d9d48bf8a04e857b, type: 2}
+  corridorLength: 20
+  corridorCount: 10
+  corridorWidth: 2
+  roomChance: 0.9
+  enemyPrefab: {fileID: 6829386680448736732, guid: 8f790d3ed81318047898ddd720ebc519, type: 3}
+  bossPrefab: {fileID: 2823669680098648101, guid: 35729c7221a9b8c4d9646033f5509834, type: 3}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  tilemap: {fileID: 0}
+  enemySpawnChance: 0.1

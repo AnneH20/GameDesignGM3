@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
    private void Awake() {
       transform.position = transform.position + target.position;
       _offset = transform.position - target.position;
+      target = GameObject.FindGameObjectWithTag("Player").transform;
     
    }
 
