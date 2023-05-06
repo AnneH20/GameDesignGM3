@@ -5,6 +5,8 @@ using UnityEngine;
 using System.Linq;
 using static ProceduralGenerator;
 using UnityEngine.Tilemaps;
+using UnityEngine.AI;
+using Pathfinding;
 
 public class CorridorFirstGenerator : RandomWalkGenerator
 {
@@ -28,6 +30,11 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         // Initialize the level here
         initialized = true;
         RunProceduralGen();
+        Invoke(nameof(ScanGraph), 0.01f);
+    }
+    private void ScanGraph()
+    {
+        AstarPath.active.Scan();
     }
     protected override void RunProceduralGenInternal()
     {
@@ -51,7 +58,6 @@ public class CorridorFirstGenerator : RandomWalkGenerator
         }
         tilemapVisualizer.PaintFloorTiles(floorpos);
         WallGenerator.CreateWalls(floorpos, tilemapVisualizer);
-
     }
 
     // Create rooms at the end of dead ends

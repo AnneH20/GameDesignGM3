@@ -5,10 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using Pathfinding;
 
 public class BattleSceneTransition : MonoBehaviour
 {
     public static BattleSceneTransition instance;
+    public static bool battleActive = false;
     // Save the current scene state when transitioning to a battle scene
     public void TransitionToBattleScene()
     {
@@ -21,15 +23,20 @@ public class BattleSceneTransition : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "BattleScene")
             {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                GameObject boss = GameObject.FindGameObjectWithTag("Boss");
                 SceneManager.UnloadSceneAsync("BattleScene");
                 // Move the player to the new scene
                 SceneManager.MoveGameObjectToScene(PlayerController.Instance.gameObject, SceneManager.GetSceneByName("Level1"));
                 SceneManager.MoveGameObjectToScene(PlayerController.Instance.grid, SceneManager.GetSceneByName("Level1"));
                 foreach (GameObject enemy in enemies)
                 {
-                    SceneManager.MoveGameObjectToScene(enemy, SceneManager.GetSceneByName("Level1"));
                     enemy.GetComponent<SpriteRenderer>().enabled = true;
-                    enemy.GetComponent<AIChase>().enabled = true;
+                    battleActive = false;
+                }
+                if (boss != null)
+                {
+                    boss.GetComponent<SpriteRenderer>().enabled = true;
+                    battleActive = false;
                 }
                 PlayerController.Instance.grid.SetActive(true);
                 
@@ -39,9 +46,11 @@ public class BattleSceneTransition : MonoBehaviour
 
     IEnumerator LoadBattleScene()
     {
+        yield return new WaitForEndOfFrame();
         // Load the scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         // Wait until the scene is loaded
         while (!asyncLoad.isDone)
         {
@@ -53,9 +62,13 @@ public class BattleSceneTransition : MonoBehaviour
         SceneManager.MoveGameObjectToScene(PlayerController.Instance.grid, SceneManager.GetSceneByName("BattleScene"));
         foreach (GameObject enemy in enemies)
         {
-            SceneManager.MoveGameObjectToScene(enemy, SceneManager.GetSceneByName("BattleScene"));
             enemy.GetComponent<SpriteRenderer>().enabled = false;
-            enemy.GetComponent<AIChase>().enabled = false;
+            battleActive = true;
+        }
+        if (boss != null)
+        {
+            boss.GetComponent<SpriteRenderer>().enabled = false;
+            battleActive = true;
         }
         PlayerController.Instance.grid.SetActive(false);
         
