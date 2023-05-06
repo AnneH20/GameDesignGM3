@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2655358891089189668}
   - component: {fileID: 2655358891089189667}
   - component: {fileID: 2655358891089189666}
-  - component: {fileID: 2655358891089189665}
+  - component: {fileID: 2086107785693678552}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -123,8 +123,8 @@ MonoBehaviour:
   Hero: {fileID: 2287944175987903937, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
   speed: 1
   distanceBetween: 100
---- !u!61 &2655358891089189665
-BoxCollider2D:
+--- !u!58 &2086107785693678552
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,15 +137,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.8333333}
-    newSize: {x: 0.75, y: 0.8333333}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
-  m_EdgeRadius: 0
+  m_Radius: 0.41666666

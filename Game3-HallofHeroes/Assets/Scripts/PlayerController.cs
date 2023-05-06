@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [System.Serializable]
 
@@ -17,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public static int maxHealth;
     [SerializeField] private PlayerState playerState;
     [SerializeField] public GameObject grid;
+    private TilemapCollider2D tilemapCollider;
+    public static bool initialized = false;
     public Rigidbody2D rb;
     public GameObject tilemapVisualizerPrefab;
     private Vector2 moveDirection;
@@ -32,7 +36,6 @@ public class PlayerController : MonoBehaviour
         maxHealth = playerState.maxHealth;
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
-
     }
 
     private void Awake()
@@ -41,15 +44,11 @@ public class PlayerController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(grid);
         }
         else
         {
-            Destroy(gameObject);
-            Destroy(grid);
         }
-
+        initialized = true;
     }
 
     // Update is called once per frame
@@ -71,6 +70,11 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        if (tilemapCollider.OverlapPoint(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime))
+        {
+            Move();
+        }
+        rb.transform.position = rb.transform.position;
     }
 
 
@@ -114,18 +118,19 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
         {
             BattleSceneTransition battleSceneTransition = FindObjectOfType<BattleSceneTransition>();
             if (battleSceneTransition != null)
             {
+                Destroy(collision.gameObject);
                 battleSceneTransition.TransitionToBattleScene();
             }
         }
     }
+
 }
