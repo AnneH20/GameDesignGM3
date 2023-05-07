@@ -26,8 +26,6 @@ public class BattleSceneTransition : MonoBehaviour
                 GameObject boss = GameObject.FindGameObjectWithTag("Boss");
                 SceneManager.UnloadSceneAsync("BattleScene");
                 // Move the player to the new scene
-                SceneManager.MoveGameObjectToScene(PlayerController.Instance.gameObject, SceneManager.GetSceneByName("Level1"));
-                SceneManager.MoveGameObjectToScene(PlayerController.Instance.grid, SceneManager.GetSceneByName("Level1"));
                 foreach (GameObject enemy in enemies)
                 {
                     enemy.GetComponent<SpriteRenderer>().enabled = true;
@@ -38,6 +36,7 @@ public class BattleSceneTransition : MonoBehaviour
                     boss.GetComponent<SpriteRenderer>().enabled = true;
                     battleActive = false;
                 }
+                PlayerController.Instance.gameObject.SetActive(true);
                 PlayerController.Instance.grid.SetActive(true);
                 
             }
@@ -58,8 +57,6 @@ public class BattleSceneTransition : MonoBehaviour
         }
 
         // Move the player to the new scene
-        SceneManager.MoveGameObjectToScene(PlayerController.Instance.gameObject, SceneManager.GetSceneByName("BattleScene"));
-        SceneManager.MoveGameObjectToScene(PlayerController.Instance.grid, SceneManager.GetSceneByName("BattleScene"));
         foreach (GameObject enemy in enemies)
         {
             enemy.GetComponent<SpriteRenderer>().enabled = false;
@@ -71,7 +68,7 @@ public class BattleSceneTransition : MonoBehaviour
             battleActive = true;
         }
         PlayerController.Instance.grid.SetActive(false);
-        
+        PlayerController.Instance.gameObject.SetActive(false);
         // Set the new scene as active
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("BattleScene"));
 
