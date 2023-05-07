@@ -12,6 +12,7 @@ public class NextLevelTile : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             LoadNextLevel();
+            PlayerController.Instance.gameObject.transform.position = new Vector2(0, 0);
         }
     }
 
