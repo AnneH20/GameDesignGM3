@@ -16,7 +16,7 @@ public class BattleSystem : MonoBehaviour
 
 	Unit playerUnit;
 	Unit enemyUnit;
-	private InventoryScript playerInventory = new InventoryScript();
+	private InventoryScript playerInventory;
 	public Text dialogueText;
 
 	public BattleHUD playerHUD;
@@ -28,10 +28,21 @@ public class BattleSystem : MonoBehaviour
 	public Button button;
 	public Button closeButton;
 
+	public BattleSceneTransition transition;
+    private int playerHealth;
+    private int playerMaxHealth;
+    public static bool battleExit = false;
+
     // Start is called before the first frame update
     void Start()
     {
 		state = BattleState.START;
+		// Set the player's health and max health based on the current scene state
+        playerHealth = PlayerController.health;
+        playerMaxHealth = PlayerController.maxHealth;
+		playerInventory = PlayerController.Instance.playerInventory;
+        Debug.Log("Player health: " + playerHealth);
+        Debug.Log("Player max health: " + playerMaxHealth);
 		StartCoroutine(SetupBattle());
     }
 
@@ -108,7 +119,14 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-			PlayerController.health = playerUnit.currentHP;
+			// Set the player's health and max health based on the current scene state
+			PlayerController.health = playerHealth;
+			PlayerController.maxHealth = playerMaxHealth;
+			Camera.main.orthographicSize = 10f;
+			Camera.main.GetComponent<CameraFollow>().enabled = true;
+			battleExit = true;
+			// Save any necessary data
+			transition.ReturnToPreviousScene();
 		} else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
@@ -140,9 +158,8 @@ public class BattleSystem : MonoBehaviour
 		float buttonSpacing = 10f; // adjust this value as needed
 		int buttonIndex = 0;
 		GameObject.Find("Items").GetComponent<Button>().interactable = true;
-		playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
-		playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 1 });
-		playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
+		//playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
+		//playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
 
         // Add a button for each item in the inventory.
         foreach (InventoryScript.Item item in playerInventory.inventory.items)
