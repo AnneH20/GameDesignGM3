@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        if (tilemapCollider.OverlapPoint(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime))
+        if (tilemapCollider.OverlapPoint(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime) && BattleController.battleExit == true)
         {
             Move();
         }
@@ -129,6 +129,9 @@ public class PlayerController : MonoBehaviour
             if (battleSceneTransition != null)
             {
                 Destroy(collision.gameObject);
+                Camera.main.orthographicSize = 3.5f;
+                Camera.main.GetComponent<CameraFollow>().enabled = false;
+                BattleController.battleExit = false;
                 battleSceneTransition.TransitionToBattleScene();
             }
         }
