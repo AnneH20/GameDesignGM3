@@ -4,18 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
-public class Item
-{
-    public string itemName;
-    public string itemDescription;
-	public int itemAmount;
-    public int itemEffect; // For example, the amount of health to heal the player or damage to deal to the enemy.
-}
 
-public class Inventory
-{
-    public List<Item> items = new List<Item>();
-}
 public class BattleSystem : MonoBehaviour
 {
 
@@ -27,7 +16,7 @@ public class BattleSystem : MonoBehaviour
 
 	Unit playerUnit;
 	Unit enemyUnit;
-
+	private InventoryScript playerInventory = new InventoryScript();
 	public Text dialogueText;
 
 	public BattleHUD playerHUD;
@@ -38,8 +27,6 @@ public class BattleSystem : MonoBehaviour
 	public GameObject itemMenu;
 	public Button button;
 	public Button closeButton;
-
-    private Inventory inventory = new Inventory();
 
     // Start is called before the first frame update
     void Start()
@@ -153,12 +140,12 @@ public class BattleSystem : MonoBehaviour
 		float buttonSpacing = 10f; // adjust this value as needed
 		int buttonIndex = 0;
 		GameObject.Find("Items").GetComponent<Button>().interactable = true;
-		inventory.items.Add(new Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
-		inventory.items.Add(new Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 1 });
-		inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
+		playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
+		playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 1 });
+		playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
 
         // Add a button for each item in the inventory.
-        foreach (Item item in inventory.items)
+        foreach (InventoryScript.Item item in playerInventory.inventory.items)
         {
 			Button newButton = Instantiate(button, itemMenu.transform);
 			newButton.GetComponentInChildren<Text>().text = item.itemName + " x" + item.itemAmount;
@@ -176,7 +163,7 @@ public class BattleSystem : MonoBehaviour
         closeButton.onClick.AddListener(() => itemMenu.SetActive(false));
     }
 
-    void UseItem(Item item)
+    void UseItem(InventoryScript.Item item)
     {
         if (item.itemEffect > 0)
         {
@@ -205,7 +192,7 @@ public class BattleSystem : MonoBehaviour
         }
 
         // Remove the item from the inventory.
-        inventory.items.Remove(item);
+        playerInventory.inventory.items.Remove(item);
 
         // Update the item menu.
         UpdateItemMenu();
