@@ -284,6 +284,13 @@ MonoBehaviour:
   corridorCount: 10
   corridorWidth: 2
   roomChance: 0.9
+  enemyPrefab: {fileID: 0}
+  bossPrefab: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  tilemap: {fileID: 0}
+  enemySpawnChance: 0.1
 --- !u!4 &367240046
 Transform:
   m_ObjectHideFlags: 0
@@ -490,6 +497,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 447759728871715568, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f23c414c15b84801be8398a9fac654b, type: 3}
     - target: {fileID: 447759728871715569, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1128,7 +1139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
+  playerState:
+    health: 0
+    maxHealth: 0
+  grid: {fileID: 0}
   rb: {fileID: 1968984629}
+  tilemapVisualizerPrefab: {fileID: 0}
   animator: {fileID: 1968984631}
 --- !u!95 &1968984631
 Animator:
