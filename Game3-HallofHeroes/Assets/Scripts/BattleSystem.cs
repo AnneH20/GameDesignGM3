@@ -48,7 +48,7 @@ public class BattleSystem : MonoBehaviour
 		playerUnit.currentHP = PlayerController.health;
 		playerUnit.maxHP = PlayerController.maxHealth;
 		playerUnit.damage = PlayerController.damage;
-		playerUnit.defense = PlayerController.defense;
+		playerUnit.baseDefense = PlayerController.defense;
 		Debug.Log("Player health: " + playerUnit.currentHP);
 		Debug.Log("Player max health: " + playerUnit.maxHP);
 
