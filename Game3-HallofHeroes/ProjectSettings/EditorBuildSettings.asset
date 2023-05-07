@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 19c0ad265b9d4ec4ebcc7d4b79e3cdba
   - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 983ca64d9b4dfc24c9f55d16c422a122
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: d24f78172006cdf4caa82e94a1ff3aa9
+  - enabled: 1
     path: Assets/Scenes/BryansBattleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

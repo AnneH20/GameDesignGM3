@@ -834,7 +834,11 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
+<<<<<<< HEAD
   tilemap: {fileID: 1814711600}
+=======
+  tilemap: {fileID: 1762479711}
+>>>>>>> ac20f60dd88af09abe0578398cc7c76ce2ac4239
   enemySpawnChance: 0.1
 --- !u!4 &1692552454
 Transform:
