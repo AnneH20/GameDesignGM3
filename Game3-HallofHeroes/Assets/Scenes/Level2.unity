@@ -24045,6 +24045,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1499664877}
     - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: tilemapVisualizerPrefab
       value: 
       objectReference: {fileID: 1438835081}
