@@ -20,11 +20,11 @@ public class BattleSceneTransition : MonoBehaviour
     // Return to the previous scene when the battle is over
     public void ReturnToPreviousScene()
     {
-        if (SceneManager.GetActiveScene().name == "BattleScene")
+        if (SceneManager.GetActiveScene().name == "BryansBattleScene")
             {
                 GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-                SceneManager.UnloadSceneAsync("BattleScene");
+                SceneManager.UnloadSceneAsync("BryansBattleScene");
                 // Move the player to the new scene
                 foreach (GameObject enemy in enemies)
                 {
@@ -47,7 +47,7 @@ public class BattleSceneTransition : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         // Load the scene asynchronously
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BryansBattleScene", LoadSceneMode.Additive);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         GameObject boss = GameObject.FindGameObjectWithTag("Boss");
         // Wait until the scene is loaded
@@ -70,7 +70,7 @@ public class BattleSceneTransition : MonoBehaviour
         PlayerController.Instance.grid.SetActive(false);
         PlayerController.Instance.gameObject.SetActive(false);
         // Set the new scene as active
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("BattleScene"));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("BryansBattleScene"));
 
     }
 }
