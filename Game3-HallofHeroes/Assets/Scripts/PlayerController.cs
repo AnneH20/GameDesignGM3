@@ -4,24 +4,14 @@ using Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[System.Serializable]
-
-public class PlayerState
-{
-    public int health;
-    public int maxHealth;
-    public int damage;
-    public int defense;
-}
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    [SerializeField] public static int health;
-    [SerializeField] public static int maxHealth;
-    [SerializeField] public static int damage;
-    [SerializeField] public static int defense;
-    [SerializeField] private PlayerState playerState;
+    [SerializeField] public int health;
+    [SerializeField] public int maxHealth;
+    [SerializeField] public int damage;
+    [SerializeField] public int defense;
     [SerializeField] public GameObject grid;
     public InventoryScript playerInventory = new InventoryScript();
     public GameObject sceneCamera;
@@ -32,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
     public Animator animator;
     public GameObject BGM;
+    public static bool isBoss = false;
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
     float moveX;
@@ -41,10 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         sceneCamera = GameObject.FindGameObjectWithTag("MainCamera");
         BGM = GameObject.Find("BGM");
-        health = playerState.health;
-        maxHealth = playerState.maxHealth;
-        damage = playerState.damage;
-        defense = playerState.defense;
         playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
 	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
         rb.transform.position = new Vector2(0, 0);
@@ -137,6 +124,10 @@ public class PlayerController : MonoBehaviour
             BattleSceneTransition battleSceneTransition = FindObjectOfType<BattleSceneTransition>();
             if (battleSceneTransition != null)
             {
+                if (collision.gameObject.CompareTag("Boss"))
+                {
+                    isBoss = true;
+                }
                 Destroy(collision.gameObject);
                 BattleSystem.battleExit = false;
                 battleSceneTransition.TransitionToBattleScene();

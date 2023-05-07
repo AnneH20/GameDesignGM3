@@ -10,6 +10,7 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject playerPrefab;
 	public GameObject enemyPrefab;
+	public GameObject bossPrefab;
 
 	public Transform playerBattleStation;
 	public Transform enemyBattleStation;
@@ -45,16 +46,23 @@ public class BattleSystem : MonoBehaviour
 		GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
 		// Set the player's stats on the current scene state
-		playerUnit.currentHP = PlayerController.health;
-		playerUnit.maxHP = PlayerController.maxHealth;
-		playerUnit.damage = PlayerController.damage;
-		playerUnit.baseDefense = PlayerController.defense;
+		playerUnit.currentHP = PlayerController.Instance.health;
+		playerUnit.maxHP = PlayerController.Instance.maxHealth;
+		playerUnit.damage = PlayerController.Instance.damage;
+		playerUnit.baseDefense = PlayerController.Instance.defense;
 		Debug.Log("Player health: " + playerUnit.currentHP);
 		Debug.Log("Player max health: " + playerUnit.maxHP);
-
-		GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-		enemyUnit = enemyGO.GetComponent<Unit>();
-
+		// If the player is fighting the boss, spawn the boss prefab
+		if (PlayerController.isBoss)
+		{
+			GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
+			enemyUnit = enemyGO.GetComponent<Unit>();
+		}
+		else
+		{
+			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+			enemyUnit = enemyGO.GetComponent<Unit>();
+		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
 		playerHUD.SetHUD(playerUnit);
@@ -122,8 +130,8 @@ public class BattleSystem : MonoBehaviour
 		{
 			dialogueText.text = "You won the battle!";
 			// Set the player's health and max health based on the current scene state
-			PlayerController.health = playerUnit.currentHP;
-			PlayerController.maxHealth = playerUnit.maxHP;
+			PlayerController.Instance.health = playerUnit.currentHP;
+			PlayerController.Instance.maxHealth = playerUnit.maxHP;
 			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
 			battleExit = true;
 			// Transition to the previous scene

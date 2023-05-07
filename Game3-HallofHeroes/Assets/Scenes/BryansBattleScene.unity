@@ -2503,11 +2503,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1714929642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ace5d3b76e8bbd94d8faa070310b062d, type: 3}
+  m_Script: {fileID: 11500000, guid: 505214bf28973754a8b67cfa8fef81ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 3578590684603659643, guid: 7054e3a2c674737488a164518ba0a5eb, type: 3}
   enemyPrefab: {fileID: 6988701493916717080, guid: b0b9e54615831a049ae5d25eff145350, type: 3}
+  bossPrefab: {fileID: 1889845614407410349, guid: 96542123fa3bce04fba79f1bc4b39e7e, type: 3}
   playerBattleStation: {fileID: 776899475}
   enemyBattleStation: {fileID: 1466009198}
   dialogueText: {fileID: 1584004651}
@@ -2554,7 +2555,7 @@ AudioSource:
   m_GameObject: {fileID: 1714929642}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 57dc727364346b7449cae5c98148a35a, type: 2}
   m_audioClip: {fileID: 8300000, guid: d6dd0a9d4e0d142fe8ac998efaf1812c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
