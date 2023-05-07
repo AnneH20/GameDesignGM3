@@ -29,20 +29,14 @@ public class BattleSystem : MonoBehaviour
 	public Button closeButton;
 
 	public BattleSceneTransition transition;
-    private int playerHealth;
-    private int playerMaxHealth;
     public static bool battleExit = false;
 
     // Start is called before the first frame update
     void Start()
     {
 		state = BattleState.START;
-		// Set the player's health and max health based on the current scene state
-        playerHealth = PlayerController.health;
-        playerMaxHealth = PlayerController.maxHealth;
+		// Set the player's inventory based on the current scene state
 		playerInventory = PlayerController.Instance.playerInventory;
-        Debug.Log("Player health: " + playerHealth);
-        Debug.Log("Player max health: " + playerMaxHealth);
 		StartCoroutine(SetupBattle());
     }
 
@@ -50,6 +44,13 @@ public class BattleSystem : MonoBehaviour
 	{
 		GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
+		// Set the player's stats on the current scene state
+		playerUnit.currentHP = PlayerController.health;
+		playerUnit.maxHP = PlayerController.maxHealth;
+		playerUnit.damage = PlayerController.damage;
+		playerUnit.defense = PlayerController.defense;
+		Debug.Log("Player health: " + playerUnit.currentHP);
+		Debug.Log("Player max health: " + playerUnit.maxHP);
 
 		GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 		enemyUnit = enemyGO.GetComponent<Unit>();
@@ -120,17 +121,21 @@ public class BattleSystem : MonoBehaviour
 		{
 			dialogueText.text = "You won the battle!";
 			// Set the player's health and max health based on the current scene state
-			PlayerController.health = playerHealth;
-			PlayerController.maxHealth = playerMaxHealth;
-			Camera.main.orthographicSize = 10f;
-			Camera.main.GetComponent<CameraFollow>().enabled = true;
+			PlayerController.health = playerUnit.currentHP;
+			PlayerController.maxHealth = playerUnit.maxHP;
+			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
 			battleExit = true;
-			// Save any necessary data
-			transition.ReturnToPreviousScene();
+			// Transition to the previous scene
+			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
 		}
+	}
+
+	void ReturnScene()
+	{
+		transition.ReturnToPreviousScene();
 	}
 
 	void PlayerTurn()

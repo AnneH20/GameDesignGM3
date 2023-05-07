@@ -39,7 +39,7 @@ public class BattleSceneTransition : MonoBehaviour
                 PlayerController.Instance.gameObject.SetActive(true);
                 PlayerController.Instance.grid.SetActive(true);
                 PlayerController.Instance.sceneCamera.SetActive(true);
-                
+                PlayerController.Instance.BGM.SetActive(true);
             }
     }
     
@@ -71,6 +71,7 @@ public class BattleSceneTransition : MonoBehaviour
         PlayerController.Instance.grid.SetActive(false);
         PlayerController.Instance.gameObject.SetActive(false);
         PlayerController.Instance.sceneCamera.SetActive(false);
+        PlayerController.Instance.BGM.SetActive(false);
         
         // Set the new scene as active
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("BryansBattleScene"));
