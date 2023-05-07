@@ -24,11 +24,6 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     private static bool initialized = false;
     private void Start()
     {
-        if (initialized) {
-            return;
-        }
-        // Initialize the level here
-        initialized = true;
         RunProceduralGen();
         Invoke(nameof(ScanGraph), 0.01f);
     }
