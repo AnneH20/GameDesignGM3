@@ -45,9 +45,12 @@ public class PlayerController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
+            // Destroy the duplicate
+            Destroy(gameObject);
         }
         initialized = true;
     }
