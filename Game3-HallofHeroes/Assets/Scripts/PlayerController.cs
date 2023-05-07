@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         maxHealth = playerState.maxHealth;
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
+        tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
     }
 
     private void Awake()
