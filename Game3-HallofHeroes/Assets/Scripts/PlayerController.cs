@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public static int maxHealth;
     [SerializeField] private PlayerState playerState;
     [SerializeField] public GameObject grid;
+    public InventoryScript playerInventory = new InventoryScript();
+    public GameObject sceneCamera;
     private TilemapCollider2D tilemapCollider;
     public static bool initialized = false;
     public Rigidbody2D rb;
@@ -32,8 +34,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        sceneCamera = GameObject.FindGameObjectWithTag("MainCamera");
         health = playerState.health;
         maxHealth = playerState.maxHealth;
+        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
+	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
@@ -71,10 +76,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        if (tilemapCollider.OverlapPoint(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime) && BattleController.battleExit == true)
-        {
-            Move();
-        }
         rb.transform.position = rb.transform.position;
     }
 
@@ -129,9 +130,7 @@ public class PlayerController : MonoBehaviour
             if (battleSceneTransition != null)
             {
                 Destroy(collision.gameObject);
-                Camera.main.orthographicSize = 3.5f;
-                Camera.main.GetComponent<CameraFollow>().enabled = false;
-                BattleController.battleExit = false;
+                BattleSystem.battleExit = false;
                 battleSceneTransition.TransitionToBattleScene();
             }
         }

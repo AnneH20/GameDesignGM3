@@ -46231,6 +46231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Pivot(Main Camera)
       objectReference: {fileID: 0}
+    - target: {fileID: 2972643576215008604, guid: ab83730874456834598b138673ac0943, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 7043122045064641207, guid: ab83730874456834598b138673ac0943, type: 3}
       propertyPath: target
       value: 
