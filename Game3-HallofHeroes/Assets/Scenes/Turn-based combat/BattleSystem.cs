@@ -8,6 +8,7 @@ public class Item
 {
     public string itemName;
     public string itemDescription;
+	public int itemAmount;
     public int itemEffect; // For example, the amount of health to heal the player or damage to deal to the enemy.
 }
 
@@ -59,7 +60,7 @@ public class BattleSystem : MonoBehaviour
 
 		playerHUD.SetHUD(playerUnit);
 		enemyHUD.SetHUD(enemyUnit);
-	
+		GameObject.Find("Items").GetComponent<Button>().interactable = false;
 		yield return new WaitForSeconds(2f);
 		
 
@@ -74,7 +75,7 @@ public class BattleSystem : MonoBehaviour
 		enemyHUD.SetHP(enemyUnit.currentHP);
 		dialogueText.text = "The attack is successful!";
 		GameObject.Find("AttackButton").GetComponent<Button>().interactable = false;
-		GameObject.Find("ItemButton").GetComponent<Button>().interactable = false;
+		GameObject.Find("Items").GetComponent<Button>().interactable = false;
 		yield return new WaitForSeconds(2f);
 
 		if(isDead)
@@ -110,7 +111,6 @@ public class BattleSystem : MonoBehaviour
 		{
 			state = BattleState.PLAYERTURN;
 			GameObject.Find("AttackButton").GetComponent<Button>().interactable = true;
-			GameObject.Find("ItemButton").GetComponent<Button>().interactable = true;
 			PlayerTurn();
 		}
 
@@ -149,22 +149,26 @@ public class BattleSystem : MonoBehaviour
 
 	void UpdateItemMenu()
     {
-		inventory.items.Add(new Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10 });
-        // Clear null item buttons.
-        foreach (Transform child in itemMenu.transform)
-        {
-			Item item = inventory.items.Find(i => i.itemName == child.GetComponentInChildren<Text>().text);
-			if (item == null && child.gameObject != closeButton.gameObject)
-				Destroy(child.gameObject);
-		}
+		Vector2 firstButtonPosition = new Vector2(-164.7f, 57.43f); // adjust this value as needed
+		float buttonSpacing = 10f; // adjust this value as needed
+		int buttonIndex = 0;
+		GameObject.Find("Items").GetComponent<Button>().interactable = true;
+		inventory.items.Add(new Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
+		inventory.items.Add(new Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 1 });
+		inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
 
         // Add a button for each item in the inventory.
         foreach (Item item in inventory.items)
         {
 			Button newButton = Instantiate(button, itemMenu.transform);
-            newButton.GetComponentInChildren<Text>().text = item.itemName;
-			newButton.gameObject.SetActive(true);
-            newButton.onClick.AddListener(() => UseItem(item));
+			newButton.GetComponentInChildren<Text>().text = item.itemName + " x" + item.itemAmount;
+
+			// Set the position of the new button based on the index of existing buttons
+			RectTransform buttonTransform = newButton.GetComponent<RectTransform>();
+			Vector2 newPosition = firstButtonPosition + new Vector2(0f, -buttonIndex * buttonSpacing);
+			buttonTransform.anchoredPosition = newPosition;
+			newButton.onClick.AddListener(() => UseItem(item));
+			buttonIndex++;
         }
 
         // Add a button to close the item menu.

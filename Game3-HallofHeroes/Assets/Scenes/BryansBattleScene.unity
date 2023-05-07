@@ -2242,7 +2242,7 @@ MonoBehaviour:
   enemyHUD: {fileID: 1290496122}
   state: 0
   itemMenu: {fileID: 1414707206}
-  button: {fileID: 8854523787346191905, guid: 0b3d67651f5a6fc418c08e1c49ee28a6, type: 3}
+  button: {fileID: 4901848147017414584, guid: 0b3d67651f5a6fc418c08e1c49ee28a6, type: 3}
   closeButton: {fileID: 2204475995823470564}
 --- !u!4 &1714929644
 Transform:
