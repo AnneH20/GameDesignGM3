@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startpos: {x: 0, y: 0}
   tilemapVisualizer: {fileID: 1438835082}
-  randomWalkData: {fileID: 11400000, guid: 74c1dd58683c57542a7e42ae762e6d39, type: 2}
+  randomWalkData: {fileID: 11400000, guid: 805f1d842cdc64a4d9d48bf8a04e857b, type: 2}
   corridorLength: 20
   corridorCount: 10
   corridorWidth: 2

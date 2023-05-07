@@ -284,12 +284,12 @@ MonoBehaviour:
   corridorCount: 10
   corridorWidth: 2
   roomChance: 0.9
-  enemyPrefab: {fileID: 0}
-  bossPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 6829386680448736732, guid: 8f790d3ed81318047898ddd720ebc519, type: 3}
+  bossPrefab: {fileID: 2823669680098648101, guid: 35729c7221a9b8c4d9646033f5509834, type: 3}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
-  tilemap: {fileID: 0}
+    m_Bits: 8
+  tilemap: {fileID: 679241912}
   enemySpawnChance: 0.1
 --- !u!4 &367240046
 Transform:
