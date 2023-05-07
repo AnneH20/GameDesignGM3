@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextLevelTile : MonoBehaviour
 {
-    [SerializeField] private string nextLevelName;
+    [SerializeField] public string nextLevelName;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,7 +17,7 @@ public class NextLevelTile : MonoBehaviour
 
     protected void LoadNextLevel()
     {
-        LevelManager.Instance.LoadScene(nextLevelName);
+        SceneManager.LoadScene(nextLevelName);
     }
 }
 

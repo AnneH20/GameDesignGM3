@@ -977,7 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59dd6fa2d8f2de49afbb8c7b44fba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Level3
+  nextLevelName: Level4
 --- !u!19719996 &1444324708
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1138,13 +1138,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236019fcb5b92489e90984e4847011b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 3
   playerState:
-    health: 0
-    maxHealth: 0
-  grid: {fileID: 0}
+    health: 100
+    maxHealth: 100
+  grid: {fileID: 528104386}
+  sceneCamera: {fileID: 0}
   rb: {fileID: 1968984629}
-  tilemapVisualizerPrefab: {fileID: 0}
+  tilemapVisualizerPrefab: {fileID: 1409863743}
   animator: {fileID: 1968984631}
 --- !u!95 &1968984631
 Animator:
