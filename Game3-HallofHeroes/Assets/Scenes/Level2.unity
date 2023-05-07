@@ -24040,5 +24040,13 @@ PrefabInstance:
       propertyPath: currentSceneState.playerMaxHealth
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 1499664877}
+    - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: tilemapVisualizerPrefab
+      value: 
+      objectReference: {fileID: 1438835081}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
