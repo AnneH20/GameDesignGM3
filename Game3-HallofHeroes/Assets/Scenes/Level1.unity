@@ -46494,6 +46494,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: playerState.health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: playerState.maxHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: tilemapVisualizerPrefab
       value: 
       objectReference: {fileID: 871752969}
