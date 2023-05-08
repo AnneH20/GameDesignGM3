@@ -32,6 +32,9 @@ public class BattleSystem : MonoBehaviour
 	public BattleSceneTransition transition;
     public static bool battleExit = false;
 
+	public AudioSource attackSound;
+	public AudioSource loseSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +82,7 @@ public class BattleSystem : MonoBehaviour
 	{
 		bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
 
-		GetComponent<AudioSource>().Play();
+		attackSound.Play();
 		enemyHUD.SetHP(enemyUnit.currentHP);
 		dialogueText.text = "The attack is successful!";
 		GameObject.Find("AttackButton").GetComponent<Button>().interactable = false;
@@ -103,7 +106,7 @@ public class BattleSystem : MonoBehaviour
 
 		yield return new WaitForSeconds(1f);
 
-		GetComponent<AudioSource>().Play();
+		attackSound.Play();
 		bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
 
 		playerHUD.SetHP(playerUnit.currentHP);
@@ -140,6 +143,7 @@ public class BattleSystem : MonoBehaviour
 			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)
 		{
+			loseSound.Play();
 			dialogueText.text = "You were defeated.";
 		}
 	}

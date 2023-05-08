@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Hero
   damage: 1
-  defense: 1
+  baseDefense: 0
+  bonusDefense: 0
   maxHP: 20
   currentHP: 20
