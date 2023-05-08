@@ -92,6 +92,10 @@ public class BattleSystem : MonoBehaviour
 		if(isDead)
 		{
 			state = BattleState.WON;
+			if (PlayerController.Instance.isBoss)
+			{
+				PlayerPrefs.SetInt("Boss Dead", 1);
+			}
 			EndBattle();
 		} else
 		{
@@ -145,6 +149,9 @@ public class BattleSystem : MonoBehaviour
 			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)
 		{
+			PlayerController.isDead = true;
+			BattleSceneTransition.battleActive = false;
+			GameObject.Find("BGM").SetActive(false);
 			loseSound.Play();
 			dialogueText.text = "You were defeated.";
 		}

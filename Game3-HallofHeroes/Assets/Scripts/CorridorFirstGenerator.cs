@@ -21,7 +21,7 @@ public class CorridorFirstGenerator : RandomWalkGenerator
     [SerializeField] private float enemySpawnChance = 0.1f;
     private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
     private HashSet<Vector2Int> floorpos, corridorpos;
-    private void Awake()
+    private void Start()
     {
         RunProceduralGen();
         Invoke(nameof(ScanGraph), 0.01f);

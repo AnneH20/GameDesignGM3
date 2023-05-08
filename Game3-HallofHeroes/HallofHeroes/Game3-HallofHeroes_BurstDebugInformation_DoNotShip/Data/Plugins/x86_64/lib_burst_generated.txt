@@ -141,6 +141,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
+--root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\AstarPathfindingProject.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll
@@ -311,6 +312,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.VisualScripting.State.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.VisualScripting.Core.dll
+--root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\AstarPathfindingProject.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\D-1\UnityProjects\GameDesignGM3\Game3-HallofHeroes\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll

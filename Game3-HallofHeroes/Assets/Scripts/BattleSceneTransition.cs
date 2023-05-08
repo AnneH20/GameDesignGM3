@@ -41,6 +41,7 @@ public class BattleSceneTransition : MonoBehaviour
                 PlayerController.Instance.sceneCamera.SetActive(true);
                 PlayerController.Instance.BGM.SetActive(true);
                 PlayerController.Instance.isBoss = false;
+                
             }
     }
     
