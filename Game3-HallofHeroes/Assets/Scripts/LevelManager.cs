@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour
         scene.allowSceneActivation = true;
         _loaderCanvas.SetActive(false);
         PauseScreen.isPaused = false;
+        Time.timeScale = 1f;
     }
 
     void Update()

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private int defense;
     [SerializeField] public GameObject grid;
+    [SerializeField] public int isBossDead = 0;
+    public static bool isDead = false;
     public InventoryScript playerInventory = new InventoryScript();
     public GameObject sceneCamera;
     private TilemapCollider2D tilemapCollider;
@@ -38,12 +40,13 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("Damage", damage);
             PlayerPrefs.SetInt("Defense", defense);
         }
-        
+        PlayerPrefs.SetInt("Boss Dead", isBossDead);
         playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
 	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
+        
         Debug.Log("Start");
     }
 

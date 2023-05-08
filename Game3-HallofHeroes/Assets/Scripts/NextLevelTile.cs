@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class NextLevelTile : MonoBehaviour
 {
     [SerializeField] private string nextLevelName;
+    private bool test = false;
+    private TextMeshPro guiText;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,8 +21,19 @@ public class NextLevelTile : MonoBehaviour
 
     protected void LoadNextLevel()
     {
-        SceneManager.LoadScene(nextLevelName);
-        
+        if (test)
+            SceneManager.LoadScene(nextLevelName);
+        else
+        {
+            StartCoroutine(ShowMessage("Boss still lingers on this level", 2));
+        }
+    }
+
+    IEnumerator ShowMessage (string message, float delay) {
+        guiText.text = message;
+        guiText.enabled = true;
+        yield return new WaitForSeconds(delay);
+        guiText.enabled = false;
     }
 }
 
