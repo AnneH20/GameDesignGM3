@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         maxHealth = PlayerPrefs.GetInt("MaxHealth");
         damage = PlayerPrefs.GetInt("Damage");
         defense = PlayerPrefs.GetInt("Defense");
+        isBossDead = PlayerPrefs.GetInt("Boss Dead");
     }
 
     private void FixedUpdate()
