@@ -33,7 +33,7 @@ public class BattleSystem : MonoBehaviour
 	private LevelUpSystem levelUpSystem;
 	public BattleSceneTransition transition;
     public static bool battleExit = false;
-
+	
 	public AudioSource attackSound;
 	public AudioSource loseSound;
 
@@ -94,6 +94,7 @@ public class BattleSystem : MonoBehaviour
 			{
 				GameObject enemyGO = Instantiate(bossPrefab5, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 1000;
 			}
 			
 		}
@@ -106,6 +107,53 @@ public class BattleSystem : MonoBehaviour
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 			enemyUnit.xpGiven = 10;
+			/*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 10;
+				enemyUnit.baseDefense = 0;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 10;
+				enemyUnit.damage += 2;
+				enemyUnit.baseDefense = 1;
+				enemyUnit.maxHP += 4;
+				enemyUnit.currentHP += 4;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 20;
+				enemyUnit.damage += 4;
+				enemyUnit.baseDefense = 2;
+				enemyUnit.maxHP += 8;
+				enemyUnit.currentHP += 8;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 30;
+				enemyUnit.damage += 8;
+				enemyUnit.baseDefense = 3;
+				enemyUnit.maxHP += 12;
+				enemyUnit.currentHP += 12;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 40;
+				enemyUnit.damage += 8;
+				enemyUnit.baseDefense = 4;
+				enemyUnit.maxHP += 16;
+				enemyUnit.currentHP += 16;
+			} */
 		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
