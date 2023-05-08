@@ -74,6 +74,7 @@ public class BattleSceneTransition : MonoBehaviour
         PlayerController.Instance.sceneCamera.SetActive(false);
         PlayerController.Instance.BGM.SetActive(false);
         
+        
         // Set the new scene as active
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("BryansBattleScene"));
 

@@ -49,10 +49,10 @@ public class BattleSystem : MonoBehaviour
 		GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
 		// Set the player's stats on the current scene state
-		playerUnit.currentHP = PlayerController.Instance.health;
-		playerUnit.maxHP = PlayerController.Instance.maxHealth;
-		playerUnit.damage = PlayerController.Instance.damage;
-		playerUnit.baseDefense = PlayerController.Instance.defense;
+		playerUnit.currentHP = PlayerPrefs.GetInt("Health");
+		playerUnit.maxHP = PlayerPrefs.GetInt("MaxHealth");
+		playerUnit.damage = PlayerPrefs.GetInt("Damage");
+		playerUnit.baseDefense = PlayerPrefs.GetInt("Defense");
 		Debug.Log("Player health: " + playerUnit.currentHP);
 		Debug.Log("Player max health: " + playerUnit.maxHP);
 		// If the player is fighting the boss, spawn the boss prefab
@@ -127,18 +127,20 @@ public class BattleSystem : MonoBehaviour
 
 	}
 
-	void EndBattle()
+	public void EndBattle()
 	{
-		
+		PlayerController.Instance.isBoss = false;
+		// Set the player's health and max health based on the current scene state
+		PlayerPrefs.SetInt("Health", playerUnit.currentHP);
+		PlayerPrefs.SetInt("MaxHealth", playerUnit.maxHP);
+		PlayerPrefs.SetInt("Damage", playerUnit.damage);
+		PlayerPrefs.SetInt("Defense", playerUnit.baseDefense);
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-			// Set the player's health and max health based on the current scene state
-			PlayerController.Instance.health = playerUnit.currentHP;
-			PlayerController.Instance.maxHealth = playerUnit.maxHP;
-			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
+			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f;
 			battleExit = true;
-			PlayerController.Instance.isBoss = false;
+			
 			// Transition to the previous scene
 			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)
@@ -178,8 +180,6 @@ public class BattleSystem : MonoBehaviour
 		float buttonSpacing = 10f; // adjust this value as needed
 		int buttonIndex = 0;
 		GameObject.Find("Items").GetComponent<Button>().interactable = true;
-		//playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
-		//playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
 
         // Add a button for each item in the inventory.
         foreach (InventoryScript.Item item in playerInventory.inventory.items)
