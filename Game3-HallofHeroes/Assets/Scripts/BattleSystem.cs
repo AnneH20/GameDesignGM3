@@ -105,7 +105,7 @@ public class BattleSystem : MonoBehaviour
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
-			enemyUnit.xpGiven = 100;
+			enemyUnit.xpGiven = 10;
 		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
