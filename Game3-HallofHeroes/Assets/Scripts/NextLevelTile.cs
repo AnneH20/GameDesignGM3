@@ -13,7 +13,7 @@ public class NextLevelTile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (PlayerPrefs.GetInt("Boss Dead") == 1)
+            if (PlayerPrefs.GetInt("Boss Dead") == 0)
             {
                 warning.SetActive(true);
                 StartCoroutine(DisplayText());
