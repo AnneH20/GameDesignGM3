@@ -56,7 +56,7 @@ public class BattleSystem : MonoBehaviour
 		Debug.Log("Player health: " + playerUnit.currentHP);
 		Debug.Log("Player max health: " + playerUnit.maxHP);
 		// If the player is fighting the boss, spawn the boss prefab
-		if (PlayerController.isBoss)
+		if (PlayerController.Instance.isBoss)
 		{
 			GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
@@ -129,6 +129,7 @@ public class BattleSystem : MonoBehaviour
 
 	void EndBattle()
 	{
+		
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
@@ -137,6 +138,7 @@ public class BattleSystem : MonoBehaviour
 			PlayerController.Instance.maxHealth = playerUnit.maxHP;
 			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
 			battleExit = true;
+			PlayerController.Instance.isBoss = false;
 			// Transition to the previous scene
 			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)

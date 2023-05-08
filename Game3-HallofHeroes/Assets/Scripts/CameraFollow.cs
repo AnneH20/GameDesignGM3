@@ -10,9 +10,9 @@ public class CameraFollow : MonoBehaviour
    [SerializeField] private Vector3 _veolicty = Vector3.zero;
 
    private void Awake() {
+      target = GameObject.FindGameObjectWithTag("Player").transform;
       transform.position = transform.position + target.position;
       _offset = transform.position - target.position;
-      target = GameObject.FindGameObjectWithTag("Player").transform;
     
    }
 

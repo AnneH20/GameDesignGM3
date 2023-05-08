@@ -19,6 +19,7 @@ public class NextLevelTile : MonoBehaviour
     protected void LoadNextLevel()
     {
         SceneManager.LoadScene(nextLevelName);
+        
     }
 }
 

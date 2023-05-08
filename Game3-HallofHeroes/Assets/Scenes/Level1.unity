@@ -46246,7 +46246,7 @@ PrefabInstance:
     - target: {fileID: 7043122045064641207, guid: ab83730874456834598b138673ac0943, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1700837828}
+      objectReference: {fileID: 0}
     - target: {fileID: 7508238177390502813, guid: ab83730874456834598b138673ac0943, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -46543,11 +46543,6 @@ PrefabInstance:
       objectReference: {fileID: 871752969}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
---- !u!4 &1700837828 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2287944175987903967, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
-  m_PrefabInstance: {fileID: 1700837827}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1941915242
 PrefabInstance:
   m_ObjectHideFlags: 0
