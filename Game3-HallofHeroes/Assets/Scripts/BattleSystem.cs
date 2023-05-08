@@ -103,9 +103,46 @@ public class BattleSystem : MonoBehaviour
 			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
 			hyperPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Hyper Potion").itemChance = 0.1f; // 10% chance to drop a hyper potion
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
-			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-			enemyUnit = enemyGO.GetComponent<Unit>();
-			enemyUnit.xpGiven = 10;
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 10;
+				enemyUnit.damage += 2;
+				enemyUnit.baseDefense = 1;
+				enemyUnit.maxHP += 4;
+				enemyUnit.currentHP += 4;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 20;
+				enemyUnit.damage += 4;
+				enemyUnit.baseDefense = 2;
+				enemyUnit.maxHP += 8;
+				enemyUnit.currentHP += 8;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 30;
+				enemyUnit.damage += 8;
+				enemyUnit.baseDefense = 3;
+				enemyUnit.maxHP += 12;
+				enemyUnit.currentHP += 12;
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5"))
+			{
+				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven += 40;
+				enemyUnit.damage += 8;
+				enemyUnit.baseDefense = 4;
+				enemyUnit.maxHP += 16;
+				enemyUnit.currentHP += 16;
+			}
 		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
