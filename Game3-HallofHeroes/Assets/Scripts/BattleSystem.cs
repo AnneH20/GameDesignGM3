@@ -231,20 +231,25 @@ public class BattleSystem : MonoBehaviour
         closeButton.onClick.AddListener(() => itemMenu.SetActive(false));
     }
 
-    void UseItem(InventoryScript.Item item)
+    public void UseItem(InventoryScript.Item item)
     {
-        if (item.itemEffect > 0)
+        if (item.itemEffect > 0 && item.itemAmount > 0)
         {
             // If the item has a positive effect, heal the player.
             playerUnit.Heal(item.itemEffect);
             playerHUD.SetHP(playerUnit.currentHP);
+			// Remove the item from the inventory.
+        	playerInventory.inventory.items.Find(i => i.itemName == item.itemName).itemAmount--;
             dialogueText.text = "Used " + item.itemName + " to heal " + item.itemEffect + " HP.";
+			Debug.Log("Used " + item.itemName + " to heal " + item.itemEffect + " HP.");
         }
-        else if (item.itemEffect < 0)
+        else if (item.itemEffect < 0 && item.itemAmount > 0)
         {
             // If the item has a negative effect, damage the enemy.
             bool isDead = enemyUnit.TakeDamage(-item.itemEffect);
             enemyHUD.SetHP(enemyUnit.currentHP);
+			// Remove the item from the inventory.
+        	playerInventory.inventory.items.Find(i => i.itemName == item.itemName).itemAmount--;
             dialogueText.text = "Used " + item.itemName + " to deal " + (-item.itemEffect) + " damage.";
 
             if (isDead)
@@ -258,16 +263,8 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(EnemyTurn());
             }
         }
-
-        // Remove the item from the inventory.
-        playerInventory.inventory.items.Remove(item);
-
         // Update the item menu.
         UpdateItemMenu();
-
-        // End the player's turn.
-        state = BattleState.ENEMYTURN;
-        StartCoroutine(EnemyTurn());
     }
 
 }
