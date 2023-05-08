@@ -46178,6 +46178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
+--- !u!1 &721811037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 447759728871715571, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
+  m_PrefabInstance: {fileID: 721811036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871752969
 GameObject:
   m_ObjectHideFlags: 0
@@ -46337,6 +46342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab83730874456834598b138673ac0943, type: 3}
+--- !u!1 &1322477652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2972643576215008604, guid: ab83730874456834598b138673ac0943, type: 3}
+  m_PrefabInstance: {fileID: 1322477651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1462689671
 GameObject:
   m_ObjectHideFlags: 0
@@ -46547,7 +46557,7 @@ PrefabInstance:
       objectReference: {fileID: 3928517204188931588}
     - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: damage
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: health
@@ -46582,6 +46592,22 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4476313472866537690, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: tilemapVisualizerPrefab
+      value: 
+      objectReference: {fileID: 871752969}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 721811037}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 3928517204188931588}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: sceneCamera
+      value: 
+      objectReference: {fileID: 1322477652}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: tilemapVisualizerPrefab
       value: 
       objectReference: {fileID: 871752969}

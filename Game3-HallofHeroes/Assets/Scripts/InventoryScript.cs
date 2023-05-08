@@ -10,6 +10,7 @@ public class InventoryScript
         public string itemDescription;
         public int itemAmount;
         public int itemEffect; // For example, the amount of health to heal the player or damage to deal to the enemy.
+        public float itemChance; // For example, the chance of the item being dropped by an enemy.
     }
 
     public class Inventory

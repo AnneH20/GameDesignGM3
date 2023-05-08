@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    [SerializeField] public int health;
-    [SerializeField] public int maxHealth;
-    [SerializeField] public int damage;
-    [SerializeField] public int defense;
+    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int damage;
+    [SerializeField] private int defense;
     [SerializeField] public GameObject grid;
     public InventoryScript playerInventory = new InventoryScript();
     public GameObject sceneCamera;
@@ -30,28 +30,31 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        sceneCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        BGM = GameObject.Find("BGM");
+        if (SceneManager.GetSceneByName("Level1").isLoaded)
+        {
+            // Set the player's stats on the current scene state
+            PlayerPrefs.SetInt("Health", health);
+            PlayerPrefs.SetInt("MaxHealth", maxHealth);
+            PlayerPrefs.SetInt("Damage", damage);
+            PlayerPrefs.SetInt("Defense", defense);
+        }
+        
         playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
 	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
+        Debug.Log("Start");
     }
 
     private void Awake()
     {
-
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            // Destroy the duplicate
-            Destroy(gameObject);
-        }
+        sceneCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        BGM = GameObject.Find("BGM");
         initialized = true;
     }
 
@@ -69,6 +72,10 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("horizontalWalk", false);
         }
+        health = PlayerPrefs.GetInt("Health");
+        maxHealth = PlayerPrefs.GetInt("MaxHealth");
+        damage = PlayerPrefs.GetInt("Damage");
+        defense = PlayerPrefs.GetInt("Defense");
     }
 
     private void FixedUpdate()

@@ -238,6 +238,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
+--- !u!1 &470236494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 447759728871715571, guid: 96a62efe7c1774d4d9eb70eee0996a41, type: 3}
+  m_PrefabInstance: {fileID: 470236493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &566172126
 GameObject:
   m_ObjectHideFlags: 0
@@ -46192,6 +46197,11 @@ Tilemap:
   m_CorrespondingSourceObject: {fileID: 3928517204300309368, guid: 042680c2bbf8b59409813d9c5f8b6bbc, type: 3}
   m_PrefabInstance: {fileID: 783536422}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &783536426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3928517204535996641, guid: 042680c2bbf8b59409813d9c5f8b6bbc, type: 3}
+  m_PrefabInstance: {fileID: 783536422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1051769568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46257,6 +46267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab83730874456834598b138673ac0943, type: 3}
+--- !u!1 &1051769569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2972643576215008604, guid: ab83730874456834598b138673ac0943, type: 3}
+  m_PrefabInstance: {fileID: 1051769568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1162068870
 PrefabInstance:
   m_ObjectHideFlags: 0
