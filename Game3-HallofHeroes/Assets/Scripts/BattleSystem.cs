@@ -104,11 +104,15 @@ public class BattleSystem : MonoBehaviour
 			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
 			hyperPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Hyper Potion").itemChance = 0.1f; // 10% chance to drop a hyper potion
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
-			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
+			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+			enemyUnit = enemyGO.GetComponent<Unit>();
+			enemyUnit.xpGiven = 10;
+			/*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
 			{
 				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
 				enemyUnit.xpGiven = 10;
+				enemyUnit.baseDefense = 0;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
 			{
@@ -149,7 +153,7 @@ public class BattleSystem : MonoBehaviour
 				enemyUnit.baseDefense = 4;
 				enemyUnit.maxHP += 16;
 				enemyUnit.currentHP += 16;
-			}
+			} */
 		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
