@@ -14,7 +14,7 @@ public class BattleSystem : MonoBehaviour
 
 	public Transform playerBattleStation;
 	public Transform enemyBattleStation;
-
+	
 	Unit playerUnit;
 	Unit enemyUnit;
 	private InventoryScript playerInventory;
@@ -58,11 +58,16 @@ public class BattleSystem : MonoBehaviour
 		// If the player is fighting the boss, spawn the boss prefab
 		if (PlayerController.Instance.isBoss)
 		{
+			PlayerPrefs.SetInt("Boss Dead", 1);
+			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 1f; // 100% chance to drop a potion
+			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.5f; // 50% chance to drop a super potion
 			GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 		}
 		else
 		{
+			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f; // 50% chance to drop a potion
+			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 		}
@@ -142,7 +147,6 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f;
 			battleExit = true;
 			
 			// Transition to the previous scene
