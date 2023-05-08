@@ -26,6 +26,8 @@ public class BattleSystem : MonoBehaviour
 	public BattleState state;
 
 	public GameObject itemMenu;
+	private float potionChance;
+	private float superPotionChance;
 	public Button button;
 	public Button closeButton;
 
@@ -59,15 +61,15 @@ public class BattleSystem : MonoBehaviour
 		if (PlayerController.Instance.isBoss)
 		{
 			PlayerPrefs.SetInt("Boss Dead", 1);
-			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 1f; // 100% chance to drop a potion
-			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.5f; // 50% chance to drop a super potion
+			potionChance = playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 1f; // 100% chance to drop a potion
+			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.5f; // 50% chance to drop a super potion
 			GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 		}
 		else
 		{
-			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f; // 50% chance to drop a potion
-			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
+			potionChance = playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f; // 50% chance to drop a potion
+			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 		}
@@ -148,9 +150,7 @@ public class BattleSystem : MonoBehaviour
 		{
 			dialogueText.text = "You won the battle!";
 			battleExit = true;
-			
-			// Transition to the previous scene
-			Invoke(nameof(ReturnScene), 2f);
+			StartCoroutine(ItemDrops());
 		} else if (state == BattleState.LOST)
 		{
 			PlayerController.isDead = true;
@@ -171,6 +171,26 @@ public class BattleSystem : MonoBehaviour
 		
 		dialogueText.text = "Choose an action:";
 		UpdateItemMenu();
+	}
+
+	IEnumerator ItemDrops()
+	{
+		yield return new WaitForSeconds(2f);
+		if (UnityEngine.Random.Range(0f, 1f) <= potionChance)
+		{
+			
+			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount++;
+			dialogueText.text = " You found a potion!";
+			yield return new WaitForSeconds(2f);
+		}
+		if (UnityEngine.Random.Range(0f, 1f) <= superPotionChance)
+		{	
+			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemAmount++;
+			dialogueText.text = " You found a super potion!";
+			yield return new WaitForSeconds(2f);
+		}
+		// Transition to the previous scene
+		ReturnScene();
 	}
 	public void OnAttackButton()
 	{
