@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject BGM;
     public bool isBoss = false;
+    public bool hasCollided = false;
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
     float moveX;
@@ -51,7 +52,7 @@ public class PlayerController : MonoBehaviour
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
-        
+        hasCollided = false;
         Debug.Log("Start");
     }
 
@@ -139,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
+        if (!hasCollided && (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss")))
         {
             BattleSceneTransition battleSceneTransition = FindObjectOfType<BattleSceneTransition>();
             if (battleSceneTransition != null)
@@ -151,9 +152,11 @@ public class PlayerController : MonoBehaviour
                 }
                 Destroy(collision.gameObject);
                 BattleSystem.battleExit = false;
+                hasCollided = true;
                 battleSceneTransition.TransitionToBattleScene();
             }
         }
+        hasCollided = false;
     }
 
 }
