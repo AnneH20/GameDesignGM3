@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
     public Animator animator;
     public GameObject BGM;
-    public static bool isBoss = false;
+    public bool isBoss = false;
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
     float moveX;
