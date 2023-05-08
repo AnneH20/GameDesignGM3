@@ -47380,8 +47380,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3928517204188931588}
     - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: health
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: sceneCamera
