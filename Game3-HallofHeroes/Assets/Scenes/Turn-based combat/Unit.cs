@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour
 	public int bonusDefense;
 	public int maxHP;
 	public int currentHP;
+	public int xpGiven;
 
 	public bool TakeDamage(int dmg)
 	{

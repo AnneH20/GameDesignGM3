@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int damage;
     [SerializeField] private int defense;
+    [SerializeField] private int currentLevel;
     [SerializeField] public GameObject grid;
     [SerializeField] public int isBossDead = 0;
     public static bool isDead = false;
@@ -39,12 +40,14 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("MaxHealth", maxHealth);
             PlayerPrefs.SetInt("Damage", damage);
             PlayerPrefs.SetInt("Defense", defense);
+            PlayerPrefs.SetInt("PlayerLevel", 1);
+            PlayerPrefs.SetInt("PlayerXP", 0);
         }
         PlayerPrefs.SetInt("Boss Dead", isBossDead);
-        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 0 });
+        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
 	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
         playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Hyper Potion", itemDescription = "Heals 50 HP.", itemEffect = 50, itemAmount = 0 });
-        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Max Potion", itemDescription = "Heals to full HP.", itemEffect = 100, itemAmount = 0 });
+        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Max Potion", itemDescription = "Heals to full HP.", itemEffect = 9999, itemAmount = 0 });
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour
         damage = PlayerPrefs.GetInt("Damage");
         defense = PlayerPrefs.GetInt("Defense");
         isBossDead = PlayerPrefs.GetInt("Boss Dead");
+        currentLevel = PlayerPrefs.GetInt("PlayerLevel");
     }
 
     private void FixedUpdate()
