@@ -148,7 +148,16 @@ public class BattleSystem : MonoBehaviour
 		{
 			dialogueText.text = "You won the battle!";
 			battleExit = true;
-			
+			if (UnityEngine.Random.Range(0f, 1f) <= playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance)
+			{
+				playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount++;
+				dialogueText.text += " You found a potion!";
+			}
+			if (UnityEngine.Random.Range(0f, 1f) <= playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance)
+			{
+				playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemAmount++;
+				dialogueText.text += " You found a super potion!";
+			}
 			// Transition to the previous scene
 			Invoke(nameof(ReturnScene), 2f);
 		} else if (state == BattleState.LOST)
