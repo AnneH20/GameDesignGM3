@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
     public Animator animator;
     public GameObject BGM;
+    private float collisionTimer = 0f;
     public bool isBoss = false;
     public bool hasCollided = false;
     private static PlayerController instance;
@@ -52,7 +53,6 @@ public class PlayerController : MonoBehaviour
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
-        hasCollided = false;
         Debug.Log("Start");
     }
 
@@ -87,6 +87,11 @@ public class PlayerController : MonoBehaviour
         defense = PlayerPrefs.GetInt("Defense");
         isBossDead = PlayerPrefs.GetInt("Boss Dead");
         currentLevel = PlayerPrefs.GetInt("PlayerLevel");
+        collisionTimer -= Time.deltaTime;
+        if (collisionTimer <= 0)
+        {
+            hasCollided = false;
+        }
     }
 
     private void FixedUpdate()
@@ -94,7 +99,6 @@ public class PlayerController : MonoBehaviour
         Move();
         rb.transform.position = rb.transform.position;
     }
-
 
     void ProcessInputs()
     {
@@ -140,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        collisionTimer = 0.08f;
         if (!hasCollided && (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss")))
         {
             BattleSceneTransition battleSceneTransition = FindObjectOfType<BattleSceneTransition>();
@@ -156,7 +161,6 @@ public class PlayerController : MonoBehaviour
                 battleSceneTransition.TransitionToBattleScene();
             }
         }
-        hasCollided = false;
     }
 
 }
