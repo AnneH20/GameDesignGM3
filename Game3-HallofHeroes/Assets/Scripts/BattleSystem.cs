@@ -107,6 +107,7 @@ public class BattleSystem : MonoBehaviour
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 			enemyUnit.xpGiven = 10;
+			// Enemy stats are based on the current scene state
 			/*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
 			{
 				GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
