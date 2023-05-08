@@ -27,8 +27,7 @@ public class BattleSystem : MonoBehaviour
 	public BattleState state;
 
 	public GameObject itemMenu;
-	private float potionChance;
-	private float superPotionChance;
+	private float potionChance, superPotionChance, hyperPotionChance, maxPotionChance;
 	public Button button;
 	public Button closeButton;
 
@@ -64,6 +63,8 @@ public class BattleSystem : MonoBehaviour
 			PlayerPrefs.SetInt("Boss Dead", 1);
 			potionChance = playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 1f; // 100% chance to drop a potion
 			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.5f; // 50% chance to drop a super potion
+			hyperPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Hyper Potion").itemChance = 0.25f; // 25% chance to drop a hyper potion
+			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.1f; // 10% chance to drop a max potion
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
@@ -95,6 +96,8 @@ public class BattleSystem : MonoBehaviour
 		{
 			potionChance = playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 0.5f; // 50% chance to drop a potion
 			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.25f; // 25% chance to drop a super potion
+			hyperPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Hyper Potion").itemChance = 0.1f; // 10% chance to drop a hyper potion
+			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
 		}
@@ -212,6 +215,18 @@ public class BattleSystem : MonoBehaviour
 		{	
 			playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemAmount++;
 			dialogueText.text = " You found a super potion!";
+			yield return new WaitForSeconds(2f);
+		}
+		if (UnityEngine.Random.Range(0f, 1f) <= hyperPotionChance)
+		{
+			playerInventory.inventory.items.Find(item => item.itemName == "Hyper Potion").itemAmount++;
+			dialogueText.text = " You found a hyper potion!";
+			yield return new WaitForSeconds(2f);
+		}
+		if (UnityEngine.Random.Range(0f, 1f) <= maxPotionChance)
+		{
+			playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemAmount++;
+			dialogueText.text = " You found a max potion!";
 			yield return new WaitForSeconds(2f);
 		}
 		// Transition to the previous scene
