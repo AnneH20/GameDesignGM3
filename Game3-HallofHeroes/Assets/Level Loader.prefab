@@ -261,7 +261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3947327191311795658}
-  - component: {fileID: 3947327191311795669}
+  - component: {fileID: 3743146983577470386}
   m_Layer: 0
   m_Name: Level Loader
   m_TagString: Untagged
@@ -285,7 +285,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3947327191311795669
+--- !u!114 &3743146983577470386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1caa11ca7bde4ec44b565464d4da8bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loaderCanvas: {fileID: 3947327190975432494}
+  _loaderCanvas: {fileID: 3947327190822454911}
   _progressBar: {fileID: 3947327191610291068}
   _textProgress: {fileID: 3947327192233950124}
 --- !u!1 &3947327191610291058

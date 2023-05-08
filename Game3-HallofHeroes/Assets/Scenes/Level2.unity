@@ -46455,7 +46455,7 @@ PrefabInstance:
     - target: {fileID: 501688197857207803, guid: 7a3cb0bb28e65c94a8a84af72f66d767, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1162068871}
+      objectReference: {fileID: 0}
     - target: {fileID: 501688197857207803, guid: 7a3cb0bb28e65c94a8a84af72f66d767, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -46746,7 +46746,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
 --- !u!114 &1162068871 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3947327191311795669, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3743146983577470386, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
   m_PrefabInstance: {fileID: 1162068870}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -46768,7 +46768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!1 &1162068873 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3947327190822454911, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3947327190975432494, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
   m_PrefabInstance: {fileID: 1162068870}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1162068874 stripped
@@ -47040,7 +47040,7 @@ MonoBehaviour:
   corridorWidth: 2
   roomChance: 0.9
   enemyPrefab: {fileID: 6829386680448736732, guid: 8f790d3ed81318047898ddd720ebc519, type: 3}
-  bossPrefab: {fileID: 2823669680098648101, guid: 35729c7221a9b8c4d9646033f5509834, type: 3}
+  bossPrefab: {fileID: 2448909312892594621, guid: 1e47a0c0cec7c234e974e84de4952068, type: 3}
   wallLayer:
     serializedVersion: 2
     m_Bits: 8

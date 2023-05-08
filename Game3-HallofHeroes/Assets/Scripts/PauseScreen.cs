@@ -8,7 +8,7 @@ public class PauseScreen : MonoBehaviour
 
     public static bool isPaused = false;
 
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] public GameObject pauseMenu;
 
     void Start()
     {
