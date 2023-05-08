@@ -160,7 +160,7 @@ MonoBehaviour:
   corridorWidth: 2
   roomChance: 0.9
   enemyPrefab: {fileID: 6829386680448736732, guid: 8f790d3ed81318047898ddd720ebc519, type: 3}
-  bossPrefab: {fileID: 2823669680098648101, guid: 35729c7221a9b8c4d9646033f5509834, type: 3}
+  bossPrefab: {fileID: 8885019304359208157, guid: b247e82d4fc8cf140b938ab06dc95e82, type: 3}
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -46691,17 +46691,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3947327190822454911, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
   m_PrefabInstance: {fileID: 1713493769}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1713493773 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3947327191311795669, guid: 6e610fac628a92348b7a62fe3153c687, type: 3}
-  m_PrefabInstance: {fileID: 1713493769}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1caa11ca7bde4ec44b565464d4da8bbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1785534846 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3404770219758783484, guid: 5410a51f767e9d447bc9f4944f634a27, type: 3}
@@ -47122,7 +47111,7 @@ PrefabInstance:
     - target: {fileID: 501688197857207803, guid: 7a3cb0bb28e65c94a8a84af72f66d767, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1713493773}
+      objectReference: {fileID: 0}
     - target: {fileID: 501688197857207803, guid: 7a3cb0bb28e65c94a8a84af72f66d767, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

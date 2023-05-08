@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
@@ -10,7 +11,7 @@ public class BattleSystem : MonoBehaviour
 
 	public GameObject playerPrefab;
 	public GameObject enemyPrefab;
-	public GameObject bossPrefab;
+	public GameObject bossPrefab, bossPrefab2, bossPrefab3, bossPrefab4, bossPrefab5;
 
 	public Transform playerBattleStation;
 	public Transform enemyBattleStation;
@@ -63,8 +64,32 @@ public class BattleSystem : MonoBehaviour
 			PlayerPrefs.SetInt("Boss Dead", 1);
 			potionChance = playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemChance = 1f; // 100% chance to drop a potion
 			superPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Super Potion").itemChance = 0.5f; // 50% chance to drop a super potion
-			GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
-			enemyUnit = enemyGO.GetComponent<Unit>();
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
+			{
+				GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
+			{
+				GameObject enemyGO = Instantiate(bossPrefab2, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3"))
+			{
+				GameObject enemyGO = Instantiate(bossPrefab3, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
+			{
+				GameObject enemyGO = Instantiate(bossPrefab4, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+			}
+			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5"))
+			{
+				GameObject enemyGO = Instantiate(bossPrefab5, enemyBattleStation);
+				enemyUnit = enemyGO.GetComponent<Unit>();
+			}
+			
 		}
 		else
 		{
@@ -263,6 +288,10 @@ public class BattleSystem : MonoBehaviour
                 StartCoroutine(EnemyTurn());
             }
         }
+		else
+		{
+			dialogueText.text = "You don't have any " + item.itemName + "s left.";
+		}
         // Update the item menu.
         UpdateItemMenu();
     }

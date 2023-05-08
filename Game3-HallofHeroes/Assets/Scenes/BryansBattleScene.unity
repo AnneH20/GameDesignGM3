@@ -2526,6 +2526,10 @@ MonoBehaviour:
   playerPrefab: {fileID: 3578590684603659643, guid: 7054e3a2c674737488a164518ba0a5eb, type: 3}
   enemyPrefab: {fileID: 6988701493916717080, guid: b0b9e54615831a049ae5d25eff145350, type: 3}
   bossPrefab: {fileID: 1889845614407410349, guid: 96542123fa3bce04fba79f1bc4b39e7e, type: 3}
+  bossPrefab2: {fileID: 4395268238874528849, guid: 9129d31e7e64eb34b939d2066b057604, type: 3}
+  bossPrefab3: {fileID: 8815647086827478508, guid: 1d02115f18069a044a8a43fb13d1edf5, type: 3}
+  bossPrefab4: {fileID: 783746482599292086, guid: d698449797cf1f340a2121be94d05992, type: 3}
+  bossPrefab5: {fileID: 8723235435710706022, guid: fddcb0d84a9fa834ea43faea75ce2f80, type: 3}
   playerBattleStation: {fileID: 776899475}
   enemyBattleStation: {fileID: 1466009198}
   dialogueText: {fileID: 1584004651}

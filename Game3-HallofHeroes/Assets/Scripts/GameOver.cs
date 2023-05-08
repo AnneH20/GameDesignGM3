@@ -24,25 +24,6 @@ public class GameOver : MonoBehaviour
         GameOverMenu.SetActive(false);
         PauseScreen.isPaused = false;
     }
-    public async void LoadScene()
-    {
-        PlayerController.isDead = false;
-        _progressBar.value = 0;
-        var scene = SceneManager.LoadSceneAsync(1);
-        scene.allowSceneActivation = false;
-        _loaderCanvas.SetActive(true);
-        
-        do {
-            await Task.Delay(100);
-            _target = Mathf.Clamp01(scene.progress / 0.9f);
-            _textProgress.text = "Loading... " + _target * 100f + "%";
-        } while (scene.progress < 0.9f);
-        scene.allowSceneActivation = true;
-        GameOverMenu.SetActive(false);
-        _loaderCanvas.SetActive(false);
-        PauseScreen.isPaused = false;
-        
-    }
 
     void Update()
     {
@@ -77,5 +58,6 @@ public class GameOver : MonoBehaviour
         GameOverMenu.SetActive(false);
         _loaderCanvas.SetActive(false);
         PauseScreen.isPaused = false;
+        Time.timeScale = 1f;
     }
 }

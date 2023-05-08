@@ -17,15 +17,15 @@ public class LevelManager : MonoBehaviour
     {
         _loaderCanvas.SetActive(false);
         PauseScreen.isPaused = false;
+        _target = 0;
+        _progressBar.value = 0;
     }
 
     // Update is called once per frame
     public async void LoadScene(string _sceneName)
     {
-        _progressBar.value = 0;
         var scene = SceneManager.LoadSceneAsync(_sceneName);
         scene.allowSceneActivation = false;
-
         _loaderCanvas.SetActive(true);
         
         do {
