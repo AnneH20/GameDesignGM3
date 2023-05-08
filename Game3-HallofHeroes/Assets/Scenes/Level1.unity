@@ -47446,11 +47446,19 @@ PrefabInstance:
       objectReference: {fileID: 3928517204188931588}
     - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: damage
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: defense
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8444730749352869739, guid: 1af4bfd0d4ddf5242ad3d70d56581fe7, type: 3}
       propertyPath: sceneCamera

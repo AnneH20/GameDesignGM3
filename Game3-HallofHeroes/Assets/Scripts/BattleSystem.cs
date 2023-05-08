@@ -30,7 +30,7 @@ public class BattleSystem : MonoBehaviour
 	private float potionChance, superPotionChance, hyperPotionChance, maxPotionChance;
 	public Button button;
 	public Button closeButton;
-
+	private LevelUpSystem levelUpSystem;
 	public BattleSceneTransition transition;
     public static bool battleExit = false;
 
@@ -43,6 +43,7 @@ public class BattleSystem : MonoBehaviour
 		state = BattleState.START;
 		// Set the player's inventory based on the current scene state
 		playerInventory = PlayerController.Instance.playerInventory;
+		levelUpSystem = PlayerController.Instance.GetComponent<LevelUpSystem>();
 		StartCoroutine(SetupBattle());
     }
 
@@ -69,21 +70,25 @@ public class BattleSystem : MonoBehaviour
 			{
 				GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 200;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab2, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 400;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab3, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 600;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab4, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
+				enemyUnit.xpGiven = 800;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5"))
 			{
@@ -100,6 +105,7 @@ public class BattleSystem : MonoBehaviour
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
+			enemyUnit.xpGiven = 10;
 		}
 		dialogueText.text = "A " + enemyUnit.unitName + " approaches...";
 
@@ -119,7 +125,7 @@ public class BattleSystem : MonoBehaviour
 
 		attackSound.Play();
 		enemyHUD.SetHP(enemyUnit.currentHP);
-		dialogueText.text = "The attack is successful!";
+		dialogueText.text = "You attacked the enemy! " + enemyUnit.unitName + " took " + playerUnit.damage + " damage.";
 		GameObject.Find("AttackButton").GetComponent<Button>().interactable = false;
 		GameObject.Find("Items").GetComponent<Button>().interactable = false;
 		yield return new WaitForSeconds(2f);
@@ -177,8 +183,10 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
+			dialogueText.text += "\nYou gained " + enemyUnit.xpGiven + " XP!";
+			levelUpSystem.AddXP(enemyUnit.xpGiven);
 			battleExit = true;
-			StartCoroutine(ItemDrops());
+			StartCoroutine(PostBattle());
 		} else if (state == BattleState.LOST)
 		{
 			PlayerController.isDead = true;
@@ -201,9 +209,14 @@ public class BattleSystem : MonoBehaviour
 		UpdateItemMenu();
 	}
 
-	IEnumerator ItemDrops()
+	IEnumerator PostBattle()
 	{
 		yield return new WaitForSeconds(2f);
+		if (levelUpSystem.CheckForLevelUp())
+		{
+			dialogueText.text = "You leveled up to " + levelUpSystem.currentLevel + "! Your stats have increased!";
+			yield return new WaitForSeconds(2f);
+		}
 		if (UnityEngine.Random.Range(0f, 1f) <= potionChance)
 		{
 			
