@@ -133,6 +133,8 @@ public class BattleSystem : MonoBehaviour
 			PlayerController.Instance.health = playerUnit.currentHP;
 			PlayerController.Instance.maxHealth = playerUnit.maxHP;
 			playerInventory.inventory.items.Find(item => item.itemName == "Potion").itemAmount += 1;
+			PlayerController.isBoss = false;
+			Debug.Log("Boss defeated: " + PlayerController.isBoss);
 			battleExit = true;
 			// Transition to the previous scene
 			Invoke(nameof(ReturnScene), 2f);

@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
                 if (collision.gameObject.CompareTag("Boss"))
                 {
                     isBoss = true;
+                    Debug.Log("Boss");
                 }
                 Destroy(collision.gameObject);
                 BattleSystem.battleExit = false;
