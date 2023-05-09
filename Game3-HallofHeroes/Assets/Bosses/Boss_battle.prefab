@@ -99,7 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Frost Golem
   damage: 10
-  baseDefense: 5
+  baseDefense: 0
   bonusDefense: 0
   maxHP: 20
   currentHP: 20
+  xpGiven: 0
