@@ -106,7 +106,7 @@ public class BattleSystem : MonoBehaviour
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
-			enemyUnit.xpGiven = 10;
+			enemyUnit.xpGiven = 200;
 			// Enemy stats are based on the current scene state
 			/*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
 			{
@@ -261,7 +261,7 @@ public class BattleSystem : MonoBehaviour
 	IEnumerator PostBattle()
 	{
 		yield return new WaitForSeconds(2f);
-		if (levelUpSystem.CheckForLevelUp())
+		while (levelUpSystem.CheckForLevelUp())
 		{
 			dialogueText.text = "You leveled up to " + levelUpSystem.currentLevel + "! Your stats have increased!";
 			yield return new WaitForSeconds(2f);
