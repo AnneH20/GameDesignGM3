@@ -31,6 +31,7 @@ public class LevelUpSystem : MonoBehaviour
 
     private void Update() {
         currentLevel = PlayerPrefs.GetInt("PlayerLevel"); // Get the player's level from PlayerPrefs
+        currentXP = PlayerPrefs.GetInt("PlayerXP"); // Get the player's XP from PlayerPrefs
     }
 
     public void AddXP(int amount)
