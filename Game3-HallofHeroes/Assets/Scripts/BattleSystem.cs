@@ -106,7 +106,7 @@ public class BattleSystem : MonoBehaviour
 			maxPotionChance = playerInventory.inventory.items.Find(item => item.itemName == "Max Potion").itemChance = 0.05f; // 5% chance to drop a max potion
 			GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
 			enemyUnit = enemyGO.GetComponent<Unit>();
-			enemyUnit.xpGiven = 200;
+			enemyUnit.xpGiven = 10;
 			// Enemy stats are based on the current scene state
 			/*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1"))
 			{
