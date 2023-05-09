@@ -44,12 +44,20 @@ public class PlayerController : MonoBehaviour
             PlayerPrefs.SetInt("Defense", defense);
             PlayerPrefs.SetInt("PlayerLevel", 1);
             PlayerPrefs.SetInt("PlayerXP", 0);
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Hyper Potion", itemDescription = "Heals 50 HP.", itemEffect = 50, itemAmount = 0 });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Max Potion", itemDescription = "Heals to full HP.", itemEffect = 9999, itemAmount = 0 });
+        }
+        else if (!SceneManager.GetSceneByName("Level1").isLoaded)
+        {
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = PlayerPrefs.GetInt("Potion") });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = PlayerPrefs.GetInt("Super Potion") });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Hyper Potion", itemDescription = "Heals 50 HP.", itemEffect = 50, itemAmount = PlayerPrefs.GetInt("Hyper Potion") });
+            playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Max Potion", itemDescription = "Heals to full HP.", itemEffect = 9999, itemAmount = PlayerPrefs.GetInt("Max Potion") });
         }
         PlayerPrefs.SetInt("Boss Dead", isBossDead);
-        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Potion", itemDescription = "Heals 10 HP.", itemEffect = 10, itemAmount = 1 });
-	    playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Super Potion", itemDescription = "Heals 20 HP.", itemEffect = 20, itemAmount = 0 });
-        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Hyper Potion", itemDescription = "Heals 50 HP.", itemEffect = 50, itemAmount = 0 });
-        playerInventory.inventory.items.Add(new InventoryScript.Item { itemName = "Max Potion", itemDescription = "Heals to full HP.", itemEffect = 9999, itemAmount = 0 });
+
         rb.transform.position = new Vector2(0, 0);
         rb.gravityScale = 0f;
         tilemapCollider = grid.GetComponentInChildren<TilemapCollider2D>();
@@ -88,6 +96,10 @@ public class PlayerController : MonoBehaviour
         isBossDead = PlayerPrefs.GetInt("Boss Dead");
         currentLevel = PlayerPrefs.GetInt("PlayerLevel");
         collisionTimer -= Time.deltaTime;
+        PlayerPrefs.SetInt("Potion", playerInventory.inventory.items[0].itemAmount);
+        PlayerPrefs.SetInt("Super Potion", playerInventory.inventory.items[1].itemAmount);
+        PlayerPrefs.SetInt("Hyper Potion", playerInventory.inventory.items[2].itemAmount);
+        PlayerPrefs.SetInt("Max Potion", playerInventory.inventory.items[3].itemAmount);
         if (collisionTimer <= 0)
         {
             hasCollided = false;
