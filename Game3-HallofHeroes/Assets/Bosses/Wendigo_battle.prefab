@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Wendigo
-  damage: 20
-  baseDefense: 10
+  damage: 30
+  baseDefense: 0
   bonusDefense: 0
   maxHP: 50
   currentHP: 50
+  xpGiven: 0

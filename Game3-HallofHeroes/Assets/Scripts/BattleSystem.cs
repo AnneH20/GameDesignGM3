@@ -70,31 +70,31 @@ public class BattleSystem : MonoBehaviour
 			{
 				GameObject enemyGO = Instantiate(bossPrefab, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
-				enemyUnit.xpGiven = 200;
+				enemyUnit.xpGiven = 50;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab2, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
-				enemyUnit.xpGiven = 400;
+				enemyUnit.xpGiven = 75;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab3, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
-				enemyUnit.xpGiven = 600;
+				enemyUnit.xpGiven = 100;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab4, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
-				enemyUnit.xpGiven = 800;
+				enemyUnit.xpGiven = 125;
 			}
 			if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5"))
 			{
 				GameObject enemyGO = Instantiate(bossPrefab5, enemyBattleStation);
 				enemyUnit = enemyGO.GetComponent<Unit>();
-				enemyUnit.xpGiven = 1000;
+				enemyUnit.xpGiven = 150;
 			}
 			
 		}

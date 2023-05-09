@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Demon Lord
-  damage: 35
-  baseDefense: 20
+  damage: 50
+  baseDefense: 0
   bonusDefense: 0
   maxHP: 100
   currentHP: 100
+  xpGiven: 0
