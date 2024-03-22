@@ -4,6 +4,6 @@
 
 Fight the enemies and defeat the bosses to be the Ultimate Hero!
 
-Video demonstration can be found here: https://youtu.be/kh3c79hRMMU
+Video demonstration can be found here: https://youtu.be/jSb1_pKY0n0
 
 Note: turn the volume down before you click the link!
